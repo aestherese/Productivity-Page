@@ -64,8 +64,10 @@
 
   img.emoji { height: 1.2em; width: 1.2em; margin: 0 .05em 0 .1em; vertical-align: -0.2em; pointer-events: none; filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.15)); }
 
-  .theme-toggle-btn { position: fixed; top: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: var(--grad-btn-yellow); border: 2px solid var(--border-color); box-shadow: var(--glossy-inset); font-size: 1.2rem; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 999; transition: transform 0.1s ease; }
+  /* Tombol Theme & Mode Malam Hijau */
+  .theme-toggle-btn { position: fixed; top: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: var(--grad-btn-yellow); border: 2px solid var(--border-color); box-shadow: var(--glossy-inset); font-size: 1.2rem; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 999; transition: transform 0.1s ease, background 0.5s ease; }
   .theme-toggle-btn:active { transform: scale(0.9); }
+  body.dark-mode .theme-toggle-btn { background: var(--grad-btn-lime) !important; color: #1a1a1a !important; }
 
   .layout-wrapper { display: flex; gap: 35px; flex-wrap: wrap; justify-content: center; align-items: flex-start; width: 100%; max-width: 900px; margin: 0 auto; position: relative; z-index: 10; }
   .left-column, .right-column { display: flex; flex-direction: column; gap: 20px; align-items: center; width: 100%; max-width: 400px; min-height: 200px; }
@@ -82,16 +84,18 @@
   .mascot-wrap img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity 0.4s ease; }
   .mascot-wrap .m1 { opacity: 1; } .mascot-wrap .m2 { opacity: 0; } .mascot-wrap.flip .m1 { opacity: 0; } .mascot-wrap.flip .m2 { opacity: 1; }
 
+  .ring-mascot-wrap { width: 140px; height: 140px; position: relative; display: inline-block; margin-bottom: 15px; }
+  .ring-mascot-wrap img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity 0.2s ease; animation: pulse 0.5s infinite alternate; }
+  .ring-mascot-wrap .m1 { opacity: 1; } .ring-mascot-wrap .m2 { opacity: 0; } .ring-mascot-wrap.flip .m1 { opacity: 0; } .ring-mascot-wrap.flip .m2 { opacity: 1; }
+
   h1 { font-family: inherit; font-size: 1.2rem; font-weight: 800; color: var(--text-dark); line-height: 1.6; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px; }
   p.subtitle { font-size: 0.85rem; font-weight: 600; color: var(--text-dark); margin-top: 5px; opacity: 0.7; }
 
-  /* HEART BIKIN NOTE */
+  /* KEMBALI KE HATI RAKSASA! */
   .giant-heart-bwrap { height: 220px; display: flex; align-items: center; justify-content: center; width: 100%; cursor: grab; padding: 10px; }
   .giant-heart-bwrap:active { cursor: grabbing; }
   .giant-heart-wrapper { cursor: pointer; transition: transform 0.1s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 220px; position: relative; animation: float 6s ease-in-out infinite; margin: 0 auto; }
   .giant-heart-wrapper:hover { transform: translateY(-5px); } .giant-heart-wrapper:active { transform: scale(0.95); }
-  
-  /* FIX: SVG Heart Balik Pakai Gradient URL dari Defs & Stroke Tipis Estetik! */
   .giant-heart-svg { width: 100%; height: auto; overflow: visible !important; filter: none; }
   .giant-heart-svg path { fill: url(#phoningHeart) !important; stroke: var(--border-color) !important; stroke-width: 0.5px !important; }
   .giant-heart-text { position: absolute; top: 43%; left: 50%; transform: translate(-50%, -50%); font-family: inherit; font-weight: 800; font-size: 1.3rem; text-align: center; z-index: 5; pointer-events: none; color: #1a1a1a !important; }
@@ -101,20 +105,26 @@
   ::view-transition-group(panel-timer), ::view-transition-group(panel-music) { animation-duration: 1.5s; animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
   @keyframes dreamyFadeIn { 0% { opacity: 0; filter: blur(15px); } 100% { opacity: 1; filter: blur(0px); } } @keyframes dreamyFadeOut { 0% { opacity: 1; filter: blur(0px); } 100% { opacity: 0; filter: blur(15px); } }
   ::view-transition-new(panel-timer), ::view-transition-new(panel-music) { animation: dreamyFadeIn 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; } ::view-transition-old(panel-timer), ::view-transition-old(panel-music) { animation: dreamyFadeOut 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  
   body.focus-mode-active .glass-panel:not(#panel-mini-tools):not(#panel-music), body.focus-mode-active .giant-heart-bwrap, body.focus-mode-active .theme-toggle-btn, body.focus-mode-active header { opacity: 0.15 !important; filter: blur(5px) !important; pointer-events: none; }
-  .glass-panel, .giant-heart-bwrap, .theme-toggle-btn, header { transition: all 1.5s cubic-bezier(0.22, 1, 0.36, 1); }
+  .glass-panel, .giant-heart-bwrap, header { transition: all 1.5s cubic-bezier(0.22, 1, 0.36, 1); }
   body.focus-mode-active { overflow: hidden; }
   
-  /* FIX: Padding Focus Mode Lega Natural */
-  body.focus-mode-active #panel-mini-tools { position: fixed !important; top: calc(50% - 110px) !important; left: 50% !important; transform: translate(-50%, -50%) scale(1.1) !important; z-index: 9999 !important; width: min(340px, 85vw) !important; margin: 0 !important; display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; background: var(--grad-panel) !important; }
-  body.focus-mode-active #panel-music { position: fixed !important; top: calc(50% + 130px) !important; left: 50% !important; transform: translate(-50%, -50%) scale(1.1) !important; z-index: 9998 !important; width: min(340px, 85vw) !important; margin: 0 !important; background: var(--grad-panel) !important; }
+  /* FIX FOCUS MODE LAYOUT & SMOOTH SHIFT (Dinamis naik turun pas playlist dibuka) */
+  body.focus-mode-active #panel-mini-tools { position: fixed !important; top: calc(50% - 130px) !important; left: 50% !important; transform: translate(-50%, -50%) scale(1.1) !important; z-index: 9999 !important; width: min(340px, 85vw) !important; margin: 0 !important; display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; background: var(--grad-panel) !important; }
+  body.focus-mode-active #panel-music { position: fixed !important; top: calc(50% + 120px) !important; left: 50% !important; transform: translate(-50%, -50%) scale(1.1) !important; z-index: 9998 !important; width: min(340px, 85vw) !important; margin: 0 !important; background: var(--grad-panel) !important; }
+  
+  /* Efek Mulus Pas Playlist Terbuka di Focus Mode (Panel Fokus geser ke atas) */
+  body.focus-mode-active.playlist-open #panel-mini-tools { top: calc(50% - 190px) !important; }
+  body.focus-mode-active.playlist-open #panel-music { top: calc(50% + 150px) !important; }
+
   body.focus-mode-active .fortune-cookie-container, body.focus-mode-active .panel-divider { display: none !important; }
 
-  /* KOTAK JAM - PIXEL (NO SPACES) */
+  /* KOTAK JAM (PIXEL - NO SPACES) */
   .clock-box { padding: 15px; text-align: center; margin-bottom: 20px; border-radius: 20px; border: 2px solid var(--border-color); background: var(--grad-panel); display: flex; flex-direction: column; align-items: center; justify-content: center; }
   #live-date { font-family: inherit; font-size: 0.95rem; font-weight: 800; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
   #live-clock { font-family: 'Press Start 2P', cursive; font-size: 1.8rem; color: var(--text-dark); letter-spacing: 2px; }
- .badge { background: var(--grad-btn-lime); color: #1a1a1a !important; border: 2px solid var(--border-color); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; box-shadow: var(--glossy-inset); }
+  .badge { background: var(--grad-btn-lime); color: #1a1a1a !important; border: 2px solid var(--border-color); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; box-shadow: var(--glossy-inset); }
   .badge.snooze { background: var(--grad-btn-pink); animation: pulse 2s infinite; margin-top: 8px; }
 
   /* INPUTS */
@@ -169,7 +179,7 @@
   input:checked + .slider { background: var(--grad-btn-lime); box-shadow: var(--glossy-inset); } 
   input:checked + .slider:before { transform: translate(18px, -50%); background-color: #1a1a1a !important; }
 
-  /* FIX: Love meter pakai emoji clover/semanggi 🍀 dengan stroke TIPIS */
+  /* LOVE METER CLOVER EMOJI + THIN STROKE FIX */
   .love-meter-wrapper { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; padding: 0 5px; } 
   .love-meter-track { flex: 1; height: 14px; background: var(--input-fill); border-radius: 20px; border: 2px solid var(--border-color); position: relative; display: flex; align-items: center; } 
   .love-meter-fill { height: 100%; width: 0%; background: var(--grad-love); border-right: 2px solid var(--border-color); border-radius: 20px 0 0 20px; transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); } 
@@ -177,7 +187,7 @@
   .love-meter-icon img.emoji { filter: drop-shadow(0.5px 0.5px 0px #1a1a1a) drop-shadow(-0.5px -0.5px 0px #1a1a1a) drop-shadow(0.5px -0.5px 0px #1a1a1a) drop-shadow(-0.5px 0.5px 0px #1a1a1a) !important; }
   .love-meter-text { font-family: 'Press Start 2P', cursive; font-size: 0.65rem; color: var(--text-dark); width: 45px; text-align: right; } 
 
-  .split-panel { display: grid !important; grid-template-columns: 1fr 2px 1fr !important; padding: 25px !important; gap: 10px !important; align-items: center !important; justify-items: center !important; }
+  .split-panel { display: grid !important; grid-template-columns: 1fr 2px 1fr !important; padding: 25px !important; gap: 10px !important; align-items: center !important; justify-items: center !important; transition: height 0.3s ease; }
   .split-panel > div { width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
   .panel-divider { width: 2px !important; height: 100px !important; background: var(--border-color) !important; border-radius: 2px !important; opacity: 0.5 !important; flex: none !important; }
   @media (max-width: 400px) { .split-panel { grid-template-columns: 1fr; gap: 20px; } .panel-divider { width: 80%; height: 2px; } }
@@ -195,13 +205,14 @@
   .cookie-info { font-size: 0.85rem; font-weight: 700; color: var(--text-dark); margin-top: 5px; text-transform: uppercase; opacity: 0.6; } 
   @keyframes shakeCookie { 0%, 100% { transform: rotate(0deg); } 25%, 75% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
 
-/* FIX: Hapus margin-bottom biar paddingnya rata tengah atas-bawah! */
-  .last-fortune-box { background: var(--input-fill); border: 2px dashed var(--border-color); border-radius: 16px; padding: 20px; text-align: center; margin: 0; box-shadow: var(--glossy-inset); }
-  .last-fortune-text { font-size: 0.95rem; font-weight: 600; font-style: italic; color: var(--text-dark); opacity: 0.85; line-height: 1.5; margin: 0; }  
+  /* FIX PADDING QUOTES: Margin bottom dikembalikan biar ga dempet TASKS */
+  .last-fortune-box { background: var(--input-fill); border: 2px dashed var(--border-color); border-radius: 16px; padding: 20px; text-align: center; margin-bottom: 20px; box-shadow: var(--glossy-inset); }
+  .last-fortune-text { font-size: 0.95rem; font-weight: 600; font-style: italic; color: var(--text-dark); opacity: 0.85; line-height: 1.5; margin: 0; }
+
   /* MUSIC */
-  .music-player { padding: 20px 20px; display: flex; flex-direction: column; gap: 12px; } 
-  .music-info-row { display: flex; align-items: center; gap: 15px; background: var(--grad-panel); border: 2px solid var(--border-color); padding: 10px; border-radius: 20px; } 
-  .vinyl-record { width: 50px; height: 50px; border-radius: 50%; background: var(--grad-btn-blue); border: 2px solid var(--border-color); display: flex; justify-content: center; align-items: center; animation: spin 4s linear infinite; animation-play-state: paused; } 
+  .music-player { padding: 20px 20px; display: flex; flex-direction: column; gap: 12px; transition: height 0.3s ease; } 
+  .music-info-row { display: flex; align-items: center; gap: 15px; background: var(--grad-panel); border: 2px solid var(--border-color); padding: 10px; border-radius: 20px; cursor: pointer; } 
+  .vinyl-record { width: 50px; height: 50px; border-radius: 50%; background: var(--grad-btn-blue); border: 2px solid var(--border-color); display: flex; justify-content: center; align-items: center; animation: spin 4s linear infinite; animation-play-state: paused; flex-shrink: 0; } 
   .vinyl-center { width: 12px; height: 12px; background: var(--grad-panel); border-radius: 50%; border: 2px solid var(--border-color); } 
   .song-details { flex: 1; text-align: left; } 
   .song-title { font-weight: 700; font-size: 0.95rem; color: var(--text-dark); margin-bottom: 3px; } 
@@ -269,13 +280,8 @@
   @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.2;} }
 
   /* PLAYBACK MODE BUTTON */
-  .control-btn.mode-btn {
-    opacity: 0.35;
-    transition: opacity 0.2s, transform 0.1s;
-  }
-  .control-btn.mode-btn.active {
-    opacity: 1;
-  }
+  .control-btn.mode-btn { opacity: 0.35; transition: opacity 0.2s, transform 0.1s; }
+  .control-btn.mode-btn.active { opacity: 1; }
   .control-btn.mode-btn:active { transform: scale(0.88); }
 
   /* MODALS FLAT Y2K */
@@ -318,7 +324,7 @@
 
 <div class="layout-wrapper">
   <div class="left-column" id="left-col">
-    <div class="container glass-panel" id="panel-alarm">
+    <div class="container glass-panel sortable-panel" id="panel-alarm">
       <header>
         <div class="mascot-wrap" id="mascotWrap">
           <img src="calla1.png" class="m1" alt="Mascot 1">
@@ -356,9 +362,9 @@
       <div id="alarmList"></div>
     </div>
 
-    <div class="container glass-panel music-player" id="panel-music">
+    <div class="container glass-panel music-player sortable-panel" id="panel-music">
       <audio id="bg-audio"></audio>
-      <div class="music-info-row" id="music-info-row" onclick="togglePlaylist()">
+      <div class="music-info-row" id="music-info-row" onclick="togglePlaylist(event)">
         <div class="vinyl-record" id="vinyl-disc"><div class="vinyl-center"></div></div>
         <div class="song-details">
           <div class="song-title" id="m-title">Loading...</div>
@@ -374,9 +380,9 @@
         <div class="progress-dot" id="progress-dot"></div>
       </div>
       <div class="music-controls">
-        <button class="control-btn mode-btn active" id="mode-btn" onclick="cyclePlayMode()" title="Repeat All" style="width:32px;height:32px;">
-          <svg id="mode-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="17,1 21,5 17,9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7,23 3,19 7,15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+        <button class="control-btn mode-btn active" id="mode-btn" onclick="cyclePlayMode()" title="Repeat All">
+          <svg id="mode-icon" viewBox="0 0 24 24">
+            <path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/>
           </svg>
         </button>
         <button class="control-btn" onclick="prevSong()"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
@@ -396,7 +402,7 @@
   </div>
 
   <div class="right-column" id="right-col">
-    <div class="giant-heart-bwrap" id="panel-heart">
+    <div class="giant-heart-bwrap glass-panel sortable-panel" id="panel-heart" style="cursor: grab;">
       <div class="giant-heart-wrapper" onclick="openAddNoteModal()">
         <svg viewBox="0 0 32 29.6" class="giant-heart-svg">
           <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
@@ -405,7 +411,7 @@
       </div>
     </div>
 
-    <div class="glass-panel split-panel" id="panel-mini-tools">
+    <div class="glass-panel split-panel sortable-panel" id="panel-mini-tools">
       <div class="timer-container">
         <h2 class="section-title" style="justify-content: center; margin-bottom: 0;">Focus 🍅</h2>
         <div class="timer-display" id="pomodoro-time" onclick="editTimer()" title="Tap to edit minutes!">25:00</div>
@@ -424,12 +430,11 @@
       </div>
     </div>
 
-    <div class="container glass-panel" id="panel-last-fortune">
+    <div class="container glass-panel sortable-panel" id="panel-todo">
       <div class="last-fortune-box">
         <p id="lastFortuneText" class="last-fortune-text">Crack a cookie to reveal your fortune! ✨</p>
       </div>
-    </div>
-    <div class="container glass-panel" id="panel-todo">
+
       <div class="todo-header">📝 TASKS</div>
       <div class="form-box" style="margin-bottom: 15px; border:none; background:transparent; padding:0;">
         <div class="input-group">
@@ -518,7 +523,6 @@
     }
   }
 
-  // GLOBAL STATE — harus di atas semua fungsi
   let playlistOpen = false;
 
   function safeGetStorage(key, defaultVal) {
@@ -594,24 +598,24 @@
     document.getElementById('m-artist').innerText = playlist[index].artist;
     renderAppleEmoji();
     if (isPlaying) audioEl.play().catch(e => console.log(e));
-    if (playlistOpen) renderPlaylistItems(); // refresh highlight
+    if (playlistOpen) renderPlaylistItems(); 
   }
-  // PLAYBACK MODES: 'repeat-all' | 'repeat-one' | 'shuffle'
+  
   const MODES = [
     {
       key: 'repeat-all',
       label: 'Repeat All',
-      svg: `<polyline points="17,1 21,5 17,9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7,23 3,19 7,15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>`
+      svg: `<path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/>`
     },
     {
       key: 'repeat-one',
       label: 'Repeat One',
-      svg: `<polyline points="17,1 21,5 17,9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7,23 3,19 7,15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/><line x1="12" y1="9" x2="12" y2="15" stroke-width="2.5"/>`
+      svg: `<path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4zm-4-2V9h-1l-2 1v1h1.5v4H13z"/>`
     },
     {
       key: 'shuffle',
       label: 'Shuffle',
-      svg: `<polyline points="16,3 21,3 21,8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21,16 21,21 16,21"/><line x1="15" y1="15" x2="21" y2="21"/>`
+      svg: `<path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/>`
     },
   ];
   let playModeIndex = 0;
@@ -628,19 +632,16 @@
   function nextSong() {
     const mode = MODES[playModeIndex].key;
     if (mode === 'repeat-one') {
-      // restart lagu yang sama
       audioEl.currentTime = 0;
       if (isPlaying) audioEl.play().catch(e => console.log(e));
       return;
     }
     if (mode === 'shuffle') {
-      // pilih random, hindari lagu yang sama
       let r;
       do { r = Math.floor(Math.random() * playlist.length); }
       while (r === currentSongIndex && playlist.length > 1);
       currentSongIndex = r;
     } else {
-      // repeat-all: maju ke lagu berikutnya, wrap ke 0
       currentSongIndex = (currentSongIndex + 1) % playlist.length;
     }
     loadSong(currentSongIndex);
@@ -649,7 +650,6 @@
   function prevSong() {
     const mode = MODES[playModeIndex].key;
     if (mode === 'shuffle') {
-      // prev saat shuffle = random juga
       let r;
       do { r = Math.floor(Math.random() * playlist.length); }
       while (r === currentSongIndex && playlist.length > 1);
@@ -698,13 +698,15 @@
     }
   });
 
-  // ============================================================
-  // PLAYLIST DROPDOWN
-  // ============================================================
-  function togglePlaylist() {
+  function togglePlaylist(e) {
+    if(e) e.stopPropagation();
     playlistOpen = !playlistOpen;
     const dropdown = document.getElementById('playlist-dropdown');
     const arrow    = document.getElementById('playlist-arrow');
+    
+    // FIX: Nambahin class ke body buat trigger transisi mulus di Focus Mode
+    document.body.classList.toggle('playlist-open', playlistOpen);
+
     if (playlistOpen) {
       renderPlaylistItems();
       dropdown.style.display = 'block';
@@ -732,23 +734,24 @@
   }
 
   function selectSong(e, index) {
-    e.stopPropagation(); // jangan trigger togglePlaylist lagi
+    e.stopPropagation(); 
     currentSongIndex = index;
     isPlaying = true;
     loadSong(index);
     document.getElementById('play-icon').style.display  = 'none';
     document.getElementById('pause-icon').style.display = 'block';
     document.getElementById('vinyl-disc').style.animationPlayState = 'running';
-    // tutup dropdown
+    
     playlistOpen = false;
+    document.body.classList.remove('playlist-open');
     document.getElementById('playlist-dropdown').style.display = 'none';
     document.getElementById('playlist-arrow').classList.remove('open');
   }
 
-  // tutup dropdown kalau klik di luar music player
   document.addEventListener('click', (e) => {
     if (playlistOpen && !e.target.closest('#panel-music')) {
       playlistOpen = false;
+      document.body.classList.remove('playlist-open');
       document.getElementById('playlist-dropdown').style.display = 'none';
       document.getElementById('playlist-arrow').classList.remove('open');
     }
@@ -795,10 +798,17 @@
     }
     closeModals();
   }
+  
   function switchFocusMode(isActive) {
-    if (document.startViewTransition) { document.startViewTransition(() => { document.body.classList.toggle('focus-mode-active', isActive); }); }
-    else { document.body.classList.toggle('focus-mode-active', isActive); }
+    if (document.startViewTransition) {
+      document.startViewTransition(() => {
+        document.body.classList.toggle('focus-mode-active', isActive);
+      });
+    } else {
+      document.body.classList.toggle('focus-mode-active', isActive);
+    }
   }
+
   function toggleTimer() {
     const btn = document.getElementById('timer-btn');
     if (isTimerRunning) { clearInterval(timerInterval); isTimerRunning = false; btn.innerText = "▶"; switchFocusMode(false); }
@@ -819,8 +829,6 @@
   updateTimerDisplay();
 
   const fortuneQuotes = ["Good news is sneaking up on you today! ✨","Don't forget to hydrate! You need ammo! ☕💧","All that hard work is gonna pay off real soon! 🌱","Someone is secretly super inspired by what you do! 🎨","Lucky girl era! Get ready for a little surprise today. 🎁","If you're exhausted, take a break. You're doing great! 💖","The universe is cooking up a beautiful plot twist for you. 🌌","A crazy good idea is gonna hit you out of nowhere, write it down! 💡","That choice you doubted? Turns out it's the absolute right move! 🛣️","You're looking stunning today, own it! ✨💅"];
-  
-  // RESET KEY UNTUK HISTORY FORTUNE BARU
   let fortuneData = safeGetStorage('phoning_fortune_v1', { date: new Date().toDateString(), count: 0, lastQuote: "" });
   
   function updateCookieCountUI() {
@@ -1113,21 +1121,21 @@
 
   document.querySelectorAll('.day-btn').forEach(b => { b.onclick = () => { b.classList.toggle('on'); }; });
 
-  const leftCol  = document.getElementById('left-col');
-  const rightCol = document.getElementById('right-col');
+  const leftColEl  = document.getElementById('left-col');
+  const rightColEl = document.getElementById('right-col');
   const savedLayout = safeGetStorage('bestie_layout_v1', null);
   if (savedLayout) {
-    savedLayout.left.forEach(id  => { const el = document.getElementById(id); if(el) leftCol.appendChild(el); });
-    savedLayout.right.forEach(id => { const el = document.getElementById(id); if(el) rightCol.appendChild(el); });
+    savedLayout.left.forEach(id  => { const el = document.getElementById(id); if(el) leftColEl.appendChild(el); });
+    savedLayout.right.forEach(id => { const el = document.getElementById(id); if(el) rightColEl.appendChild(el); });
   }
   function saveLayout() {
-    const left  = Array.from(leftCol.children).map(el => el.id).filter(Boolean);
-    const right = Array.from(rightCol.children).map(el => el.id).filter(Boolean);
+    const left  = Array.from(leftColEl.children).map(el => el.id).filter(Boolean);
+    const right = Array.from(rightColEl.children).map(el => el.id).filter(Boolean);
     localStorage.setItem('bestie_layout_v1', JSON.stringify({ left, right }));
   }
   const sortableOptions = { group: 'shared', animation: 150, ghostClass: 'sortable-ghost', dragClass: 'sortable-drag', filter: 'input, textarea, button, select, .cookie-btn, .giant-heart-wrapper', preventOnFilter: false, onEnd: saveLayout };
-  new Sortable(leftCol,  sortableOptions);
-  new Sortable(rightCol, sortableOptions);
+  new Sortable(leftColEl,  sortableOptions);
+  new Sortable(rightColEl, sortableOptions);
 
   // INIT
   updateBackground(new Date().getHours());
