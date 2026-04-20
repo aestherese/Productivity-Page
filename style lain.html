@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CALLA'S PAGE ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<style>
+  /* =========================================
+     NEWJEANS PHONING Y2K GLOSSY THEME 🐰📱
+     ========================================= */
+  :root { 
+    --grad-panel: linear-gradient(180deg, #ffffff 0%, #e6ecf2 100%);
+    --text-dark: #1a1a1a; 
+    --border-color: #1a1a1a; 
+    --input-fill: linear-gradient(180deg, #f0f4f8 0%, #ffffff 100%);
+    
+    /* THE ULTIMATE GLOSSY GRADIENTS */
+    --grad-btn-blue: linear-gradient(180deg, #d4f0ff 0%, #7acff0 100%);
+    --grad-btn-pink: linear-gradient(180deg, #ffe0e9 0%, #ff85a2 100%);
+    --grad-btn-lime: linear-gradient(180deg, #f2ffb3 0%, #bbed00 100%);
+    --grad-btn-yellow: linear-gradient(180deg, #fff5b3 0%, #ffdf3d 100%);
+    --grad-love: linear-gradient(90deg, #ffb3c6, #ff85a2);
+    
+    --accent-pink: #ff85a2;
+    --heart-top: #ffe0e9;
+    --heart-bot: #ff85a2;
+    --glossy-inset: inset 0 2px 4px rgba(255,255,255,0.6);
+  }
+  
+  body.dark-mode { 
+    --grad-panel: linear-gradient(180deg, #2e3042 0%, #1c1d29 100%);
+    --text-dark: #e8eaef; 
+    --border-color: rgba(255, 255, 255, 0.12); /* Garis transparan tipis yang clean */
+    --input-fill: linear-gradient(180deg, #0e0f14 0%, #14151c 100%);
+    
+    /* Gradasi Night Mode SAMA PERSIS dengan Day Mode biar glossy full */
+    --grad-btn-blue: linear-gradient(180deg, #d4f0ff 0%, #7acff0 100%);
+    --grad-btn-pink: linear-gradient(180deg, #ffe0e9 0%, #ff85a2 100%);
+    --grad-btn-lime: linear-gradient(180deg, #f2ffb3 0%, #bbed00 100%);
+    --grad-btn-yellow: linear-gradient(180deg, #fff5b3 0%, #ffdf3d 100%);
+    --grad-love: linear-gradient(90deg, #ffe0e9, #ff85a2);
+    
+    --accent-pink: #ff85a2;
+    --heart-top: #ffb3c6;
+    --heart-bot: #ff6b8f;
+    --glossy-inset: inset 0 2px 4px rgba(255,255,255,0.4);
+  }
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; } 
+  ::-webkit-scrollbar-track { background: transparent; border-left: 2px solid var(--border-color); } 
+  ::-webkit-scrollbar-thumb { background: var(--text-dark); border-radius: 10px; } 
+  
+  html, body { min-height: 100vh; overflow-x: hidden; }
+  
+  body { 
+    background-attachment: fixed !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+    color: var(--text-dark); padding: 30px; display: block; position: relative; transition: background 0.5s ease, color 0.5s ease; 
+  }
+
+  img.emoji { height: 1.2em; width: 1.2em; margin: 0 .05em 0 .1em; vertical-align: -0.2em; pointer-events: none; filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.15)); }
+
+  .theme-toggle-btn { position: fixed; top: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: var(--grad-btn-yellow); border: 2px solid var(--border-color); box-shadow: var(--glossy-inset); font-size: 1.2rem; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 999; transition: transform 0.1s ease; }
+  .theme-toggle-btn:active { transform: scale(0.9); }
+
+  .layout-wrapper { display: flex; gap: 35px; flex-wrap: wrap; justify-content: center; align-items: flex-start; width: 100%; max-width: 900px; margin: 0 auto; position: relative; z-index: 10; }
+  .left-column, .right-column { display: flex; flex-direction: column; gap: 20px; align-items: center; width: 100%; max-width: 400px; min-height: 200px; }
+
+  .glass-panel { background: var(--grad-panel) !important; border: 2px solid var(--border-color) !important; border-radius: 28px; cursor: grab; width: 100%; transition: transform 0.1s ease; box-shadow: none !important; }
+  .glass-panel:active { cursor: grabbing; transform: scale(0.99); }
+  .container { width: 100%; padding: 25px; position: relative; }
+
+  .sortable-ghost { opacity: 0.5; border: 2px dashed var(--border-color) !important; background: transparent !important; }
+  .sortable-drag { cursor: grabbing !important; }
+
+  header { text-align: center; margin-bottom: 20px; }
+  .mascot-wrap { width: 110px; height: 110px; position: relative; display: inline-block; margin-bottom: 10px; animation: float 3s ease-in-out infinite; }
+  .mascot-wrap img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity 0.4s ease; }
+  .mascot-wrap .m1 { opacity: 1; } .mascot-wrap .m2 { opacity: 0; } .mascot-wrap.flip .m1 { opacity: 0; } .mascot-wrap.flip .m2 { opacity: 1; }
+
+  h1 { font-family: inherit; font-size: 1.2rem; font-weight: 800; color: var(--text-dark); line-height: 1.6; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px; }
+  p.subtitle { font-size: 0.85rem; font-weight: 600; color: var(--text-dark); margin-top: 5px; opacity: 0.7; }
+
+  /* HEART BIKIN NOTE */
+  .giant-heart-bwrap { height: 220px; display: flex; align-items: center; justify-content: center; width: 100%; cursor: grab; padding: 10px; }
+  .giant-heart-bwrap:active { cursor: grabbing; }
+  .giant-heart-wrapper { cursor: pointer; transition: transform 0.1s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 220px; position: relative; animation: float 6s ease-in-out infinite; margin: 0 auto; }
+  .giant-heart-wrapper:hover { transform: translateY(-5px); } .giant-heart-wrapper:active { transform: scale(0.95); }
+  
+  /* FIX: SVG Heart Balik Pakai Gradient URL dari Defs & Stroke Tipis Estetik! */
+  .giant-heart-svg { width: 100%; height: auto; overflow: visible !important; filter: none; }
+  .giant-heart-svg path { fill: url(#phoningHeart) !important; stroke: var(--border-color) !important; stroke-width: 0.5px !important; }
+  .giant-heart-text { position: absolute; top: 43%; left: 50%; transform: translate(-50%, -50%); font-family: inherit; font-weight: 800; font-size: 1.3rem; text-align: center; z-index: 5; pointer-events: none; color: #1a1a1a !important; }
+
+  /* ZEN MODE */
+  #panel-mini-tools { view-transition-name: panel-timer; } #panel-music { view-transition-name: panel-music; }
+  ::view-transition-group(panel-timer), ::view-transition-group(panel-music) { animation-duration: 1.5s; animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+  @keyframes dreamyFadeIn { 0% { opacity: 0; filter: blur(15px); } 100% { opacity: 1; filter: blur(0px); } } @keyframes dreamyFadeOut { 0% { opacity: 1; filter: blur(0px); } 100% { opacity: 0; filter: blur(15px); } }
+  ::view-transition-new(panel-timer), ::view-transition-new(panel-music) { animation: dreamyFadeIn 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; } ::view-transition-old(panel-timer), ::view-transition-old(panel-music) { animation: dreamyFadeOut 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  body.focus-mode-active .glass-panel:not(#panel-mini-tools):not(#panel-music), body.focus-mode-active .giant-heart-bwrap, body.focus-mode-active .theme-toggle-btn, body.focus-mode-active header { opacity: 0.15 !important; filter: blur(5px) !important; pointer-events: none; }
+  .glass-panel, .giant-heart-bwrap, .theme-toggle-btn, header { transition: all 1.5s cubic-bezier(0.22, 1, 0.36, 1); }
+  body.focus-mode-active { overflow: hidden; }
+  
+  /* FIX: Padding Focus Mode Lega Natural */
+  body.focus-mode-active #panel-mini-tools { position: fixed !important; top: calc(50% - 110px) !important; left: 50% !important; transform: translate(-50%, -50%) scale(1.1) !important; z-index: 9999 !important; width: min(340px, 85vw) !important; margin: 0 !important; display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; background: var(--grad-panel) !important; }
+  body.focus-mode-active #panel-music { position: fixed !important; top: calc(50% + 130px) !important; left: 50% !important; transform: translate(-50%, -50%) scale(1.1) !important; z-index: 9998 !important; width: min(340px, 85vw) !important; margin: 0 !important; background: var(--grad-panel) !important; }
+  body.focus-mode-active .fortune-cookie-container, body.focus-mode-active .panel-divider { display: none !important; }
+
+  /* KOTAK JAM - PIXEL (NO SPACES) */
+  .clock-box { padding: 15px; text-align: center; margin-bottom: 20px; border-radius: 20px; border: 2px solid var(--border-color); background: var(--grad-panel); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  #live-date { font-family: inherit; font-size: 0.95rem; font-weight: 800; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  #live-clock { font-family: 'Press Start 2P', cursive; font-size: 1.8rem; color: var(--text-dark); letter-spacing: 2px; }
+ .badge { background: var(--grad-btn-lime); color: #1a1a1a !important; border: 2px solid var(--border-color); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; box-shadow: var(--glossy-inset); }
+  .badge.snooze { background: var(--grad-btn-pink); animation: pulse 2s infinite; margin-top: 8px; }
+
+  /* INPUTS */
+  .form-box { padding: 18px; margin-bottom: 20px; border-radius: 20px; border: 2px solid var(--border-color); background: var(--grad-panel); } 
+  .input-row { display: flex; gap: 12px; margin-bottom: 15px; align-items: flex-end; } .input-group { display: flex; flex-direction: column; gap: 6px; } .input-group.time { flex: 0 0 120px; } .input-group.msg { flex: 1; } 
+  label { font-size: 0.75rem; font-weight: 700; color: var(--text-dark); text-transform: uppercase; opacity: 0.7; letter-spacing: 0.5px; }
+  .unified-time-picker { display: flex; align-items: center; justify-content: center; background: var(--input-fill); border: 2px solid var(--border-color); border-radius: 12px; padding: 5px; height: 44px; } 
+  select.time-select { appearance: none; font-family: 'Press Start 2P', cursive; font-size: 0.85rem; color: var(--text-dark); background: transparent; border: none; outline: none; cursor: pointer; height: 100%; display: flex; align-items: center; }
+  input[type="text"], input[type="number"], input[type="time"], textarea { appearance: none; font-family: inherit; font-size: 1rem; font-weight: 600; border: 2px solid var(--border-color); border-radius: 12px; background: var(--input-fill); outline: none; width: 100%; color: var(--text-dark); transition: 0.2s; } 
+  input[type="text"], input[type="number"], input[type="time"] { height: 44px; padding: 0 12px; } textarea { padding: 12px; }
+  input[type="text"]:focus, input[type="number"]:focus, input[type="time"]:focus, textarea:focus { border-color: #7acff0; }
+  
+  .days-grid { display: flex; justify-content: space-between; gap: 4px; margin-bottom: 15px; } 
+  .day-btn { flex: 1; height: 36px; font-family: inherit; font-size: 0.85rem; font-weight: 700; border: 2px solid var(--border-color); border-radius: 10px; background: var(--input-fill); color: var(--text-dark); cursor: pointer; transition: transform 0.1s; } 
+  .day-btn:active { transform: scale(0.9); }
+  .day-btn.on { background: var(--grad-btn-pink); color: #1a1a1a !important; border-color: var(--border-color); box-shadow: var(--glossy-inset); }
+  
+  .btn-pixel { width: 100%; padding: 14px; font-family: inherit; font-size: 0.9rem; font-weight: 800; background: var(--grad-btn-blue); color: #1a1a1a !important; border: 2px solid var(--border-color); border-radius: 50px; cursor: pointer; transition: transform 0.1s ease; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: var(--glossy-inset); } 
+  .btn-pixel:active { transform: scale(0.97); }
+
+  .section-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 5px; justify-content: flex-start; color: var(--text-dark); text-transform: uppercase; } 
+  #alarmList, #todoList, #closedNotesList { max-height: 250px; overflow-y: auto; padding-right: 8px; }
+  
+  .alarm-card, .todo-item { padding: 15px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; border-radius: 16px; border: 2px solid var(--border-color); background: var(--grad-panel); transition: transform 0.1s; cursor: pointer; } 
+  .alarm-card.off { opacity: 0.5; background: var(--input-fill); filter: grayscale(100%); } 
+  .alarm-info { display: flex; flex-direction: column; flex: 1; margin-right: 10px; text-align: left; } 
+  .alarm-info h3 { font-family: 'Press Start 2P', cursive; font-size: 1rem; margin-bottom: 6px; color: var(--text-dark); letter-spacing: 1px; } 
+  .alarm-info p { font-size: 0.95rem; font-weight: 600; color: var(--text-dark); } 
+  .alarm-info small { font-size: 0.75rem; color: var(--text-dark); font-weight: 700; opacity: 0.6; margin-top: 4px; }
+  
+  .todo-header { background: var(--grad-btn-pink); color: #1a1a1a !important; padding: 12px; border-radius: 50px; border: 2px solid var(--border-color); text-align: center; font-family: inherit; font-size: 1rem; font-weight: 800; margin-bottom: 20px; line-height: 1.5; text-transform: uppercase; letter-spacing: 1px; box-shadow: var(--glossy-inset); } 
+  .todo-item.hide { opacity: 0 !important; transform: scale(0.9) !important; max-height: 0 !important; padding: 0 !important; margin: 0 !important; border: none !important; }
+  .todo-item:active { transform: scale(0.98); } 
+  .todo-item.done { opacity: 0.6; background: var(--input-fill); } 
+  .todo-item.done .todo-text { text-decoration: line-through; opacity: 0.7; } 
+  .todo-text { font-size: 0.95rem; font-weight: 600; flex: 1; margin-left: 10px; word-break: break-word; text-align: left; }
+  
+  .action-group { display: flex; gap: 8px; align-items: center; justify-content: flex-end; } 
+  .btn-action { color: #1a1a1a !important; border: 2px solid var(--border-color); border-radius: 50px; width: 32px; height: 32px; font-weight: bold; cursor: pointer; font-size: 12px; display: flex; justify-content: center; align-items: center; transition: transform 0.1s; box-shadow: var(--glossy-inset); margin: 0; padding: 0; } 
+  .btn-action:active { transform: scale(0.85); }
+  .btn-edit { background: var(--grad-btn-yellow); } 
+  .btn-del { background: var(--grad-btn-pink); }
+  
+  .chk-box { width: 24px; height: 24px; border: 2px solid var(--border-color); border-radius: 50%; display: inline-block; position: relative; flex-shrink: 0; background: var(--input-fill); transition: background 0.2s; } 
+  .todo-item.done .chk-box { background: var(--grad-btn-lime); box-shadow: var(--glossy-inset); } 
+  .todo-item.done .chk-box::after { content: "✔"; color: #1a1a1a !important; position: absolute; top: 1px; left: 4px; font-size: 14px; font-weight: 800; }
+  
+  .toggle { position: relative; display: flex; align-items: center; width: 44px; height: 26px; margin-right: 4px; flex-shrink: 0; } 
+  .toggle input[type="checkbox"] { opacity: 0; width: 0; height: 0; } 
+  .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: var(--input-fill); border: 2px solid var(--border-color); border-radius: 34px; transition: .4s; } 
+  .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 4px; top: 50%; transform: translateY(-50%); background-color: var(--text-dark); border-radius: 50%; transition: .4s; } 
+  input:checked + .slider { background: var(--grad-btn-lime); box-shadow: var(--glossy-inset); } 
+  input:checked + .slider:before { transform: translate(18px, -50%); background-color: #1a1a1a !important; }
+
+  /* FIX: Love meter pakai emoji clover/semanggi 🍀 dengan stroke TIPIS */
+  .love-meter-wrapper { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; padding: 0 5px; } 
+  .love-meter-track { flex: 1; height: 14px; background: var(--input-fill); border-radius: 20px; border: 2px solid var(--border-color); position: relative; display: flex; align-items: center; } 
+  .love-meter-fill { height: 100%; width: 0%; background: var(--grad-love); border-right: 2px solid var(--border-color); border-radius: 20px 0 0 20px; transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); } 
+  .love-meter-icon { position: absolute; left: 0%; top: 50%; transform: translate(-50%, -50%); font-size: 1.4rem; z-index: 10; transition: left 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); } 
+  .love-meter-icon img.emoji { filter: drop-shadow(0.5px 0.5px 0px #1a1a1a) drop-shadow(-0.5px -0.5px 0px #1a1a1a) drop-shadow(0.5px -0.5px 0px #1a1a1a) drop-shadow(-0.5px 0.5px 0px #1a1a1a) !important; }
+  .love-meter-text { font-family: 'Press Start 2P', cursive; font-size: 0.65rem; color: var(--text-dark); width: 45px; text-align: right; } 
+
+  .split-panel { display: grid !important; grid-template-columns: 1fr 2px 1fr !important; padding: 25px !important; gap: 10px !important; align-items: center !important; justify-items: center !important; }
+  .split-panel > div { width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .panel-divider { width: 2px !important; height: 100px !important; background: var(--border-color) !important; border-radius: 2px !important; opacity: 0.5 !important; flex: none !important; }
+  @media (max-width: 400px) { .split-panel { grid-template-columns: 1fr; gap: 20px; } .panel-divider { width: 80%; height: 2px; } }
+  
+  .timer-display { font-family: 'Press Start 2P', cursive; font-size: 1.4rem; color: var(--text-dark); margin: 10px 0 5px 0; cursor: pointer; transition: 0.2s; letter-spacing: 1px; }
+  .timer-display:hover { transform: scale(1.05); }
+  .timer-hint { font-size: 0.65rem; color: var(--text-dark); margin-bottom: 10px; font-weight: 700; text-transform: uppercase; opacity: 0.6; }
+  .timer-controls { display: flex; gap: 10px; margin-bottom: 12px; align-items: center; justify-content: center; }
+  .timer-controls .btn-action { width: 36px; height: 36px; border-radius: 12px; }
+  input.timer-mode { font-family: inherit; font-size: 0.8rem; font-weight: 700; color: var(--text-dark); background: var(--input-fill); padding: 8px 12px; border-radius: 12px; border: 2px solid var(--border-color); text-align: center; width: 130px; outline: none; }
+
+  .fortune-cookie-container { text-align: center; padding: 0; display: flex !important; flex-direction: column !important; justify-content: center !important; } 
+  .cookie-btn { font-size: 3.5rem; cursor: pointer; transition: 0.2s; display: inline-block; user-select: none; } 
+  .cookie-btn:hover { animation: shakeCookie 0.5s ease-in-out infinite; } .cookie-btn:active { transform: scale(0.9); } 
+  .cookie-info { font-size: 0.85rem; font-weight: 700; color: var(--text-dark); margin-top: 5px; text-transform: uppercase; opacity: 0.6; } 
+  @keyframes shakeCookie { 0%, 100% { transform: rotate(0deg); } 25%, 75% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
+
+/* FIX: Hapus margin-bottom biar paddingnya rata tengah atas-bawah! */
+  .last-fortune-box { background: var(--input-fill); border: 2px dashed var(--border-color); border-radius: 16px; padding: 20px; text-align: center; margin: 0; box-shadow: var(--glossy-inset); }
+  .last-fortune-text { font-size: 0.95rem; font-weight: 600; font-style: italic; color: var(--text-dark); opacity: 0.85; line-height: 1.5; margin: 0; }  
+  /* MUSIC */
+  .music-player { padding: 20px 20px; display: flex; flex-direction: column; gap: 12px; } 
+  .music-info-row { display: flex; align-items: center; gap: 15px; background: var(--grad-panel); border: 2px solid var(--border-color); padding: 10px; border-radius: 20px; } 
+  .vinyl-record { width: 50px; height: 50px; border-radius: 50%; background: var(--grad-btn-blue); border: 2px solid var(--border-color); display: flex; justify-content: center; align-items: center; animation: spin 4s linear infinite; animation-play-state: paused; } 
+  .vinyl-center { width: 12px; height: 12px; background: var(--grad-panel); border-radius: 50%; border: 2px solid var(--border-color); } 
+  .song-details { flex: 1; text-align: left; } 
+  .song-title { font-weight: 700; font-size: 0.95rem; color: var(--text-dark); margin-bottom: 3px; } 
+  .song-artist { font-size: 0.75rem; color: var(--text-dark); font-weight: 600; opacity: 0.7; } 
+  
+  .progress-bar-container { width: 100%; height: 10px; background: var(--input-fill); border-radius: 20px; border: 2px solid var(--border-color); position: relative; margin-top: 5px; cursor: pointer; } 
+  .progress-fill { width: 0%; height: 100%; background: var(--grad-btn-blue); border-radius: 8px; transition: width 0.1s linear; border-right: 2px solid var(--border-color); } 
+  .progress-dot { position: absolute; top: -5px; left: 0%; width: 16px; height: 16px; background: #fff; border: 2px solid var(--border-color); border-radius: 50%; transition: left 0.1s linear; transform: translateX(-50%); pointer-events: none; } 
+  
+  .music-controls { display: flex; justify-content: space-evenly; align-items: center; margin-top: 5px; padding: 0 10px; } 
+  .control-btn { background: var(--input-fill); border: 2px solid var(--border-color); border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; cursor: pointer; color: var(--text-dark); transition: transform 0.1s; box-shadow: var(--glossy-inset); } 
+  .control-btn:active { transform: scale(0.9); }
+  .control-btn svg { width: 16px; height: 16px; fill: currentColor; } 
+  .control-btn.play { width: 50px; height: 50px; background: var(--grad-btn-pink); border: 2px solid var(--border-color); color: #1a1a1a !important; } 
+  .control-btn.play svg { width: 22px; height: 22px; } 
+  
+  .volume-wrapper { position: relative; display: inline-block; } 
+  .volume-dropdown { position: absolute; bottom: 130%; left: 50%; transform: translateX(-50%) translateY(10px); background: var(--grad-panel); border: 2px solid var(--border-color); padding: 10px; border-radius: 16px; opacity: 0; pointer-events: none; transition: 0.2s; display: flex; align-items: center; } 
+  .volume-dropdown.show-vol { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); } 
+  .vol-slider { width: 80px; cursor: pointer; } 
+  @keyframes spin { 100% { transform: rotate(360deg); } }
+
+  /* PLAYLIST DROPDOWN */
+  .music-info-row { cursor: pointer; user-select: none; }
+  .music-info-row:hover { opacity: 0.9; }
+  .playlist-arrow { font-size: 0.75rem; opacity: 0.45; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); flex-shrink: 0; }
+  .playlist-arrow.open { transform: rotate(180deg); opacity: 0.8; }
+
+  #playlist-dropdown {
+    display: none;
+    background: var(--grad-panel);
+    border: 2px solid var(--border-color);
+    border-radius: 18px;
+    overflow: hidden;
+    animation: dropIn 0.25s cubic-bezier(0.34,1.56,0.64,1) forwards;
+    max-height: 220px;
+    overflow-y: auto;
+  }
+  @keyframes dropIn {
+    from { opacity:0; transform:translateY(-8px) scale(0.97); }
+    to   { opacity:1; transform:translateY(0) scale(1); }
+  }
+  .playlist-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color);
+    font-family: inherit; font-size: 0.85rem; font-weight: 600;
+    color: var(--text-dark);
+    transition: background 0.15s;
+  }
+  .playlist-item:last-child { border-bottom: none; }
+  .playlist-item:hover { background: var(--input-fill); }
+  .playlist-item:active { transform: scale(0.98); }
+  .playlist-item.now-playing { background: var(--grad-btn-pink); box-shadow: var(--glossy-inset); }
+  .track-num {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.55rem; opacity: 0.45; width: 18px; flex-shrink: 0;
+  }
+  .playlist-item.now-playing .track-num { opacity: 0.7; }
+  .track-info { flex: 1; min-width: 0; }
+  .track-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 700; }
+  .track-artist { font-size: 0.72rem; opacity: 0.6; margin-top: 1px; }
+  .track-playing-icon { font-size: 0.8rem; flex-shrink: 0; animation: blink 1s infinite; }
+  @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.2;} }
+
+  /* PLAYBACK MODE BUTTON */
+  .control-btn.mode-btn {
+    opacity: 0.35;
+    transition: opacity 0.2s, transform 0.1s;
+  }
+  .control-btn.mode-btn.active {
+    opacity: 1;
+  }
+  .control-btn.mode-btn:active { transform: scale(0.88); }
+
+  /* MODALS FLAT Y2K */
+  .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 9999; flex-direction: column; align-items: center; justify-content: center; } 
+  .overlay.show { display: flex; } 
+  .edit-modal-box { background: var(--grad-panel) !important; border: 2px solid var(--border-color) !important; border-radius: 25px !important; padding: 30px !important; width: 90%; max-width: 350px; animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; text-align: left; } 
+  .edit-modal-title { font-family: inherit; font-size: 1.1rem; font-weight: 800; color: var(--text-dark); margin-bottom: 25px; text-align: center; line-height: 1.5; text-transform: uppercase; letter-spacing: 0.5px; } 
+  .edit-modal-box label { color: var(--text-dark) !important; font-size: 0.8rem; margin-bottom: 8px; display: block; font-weight: 700; text-transform: uppercase; opacity: 0.7; } 
+  .btn-primary-modal { background: var(--grad-btn-blue) !important; border: 2px solid var(--border-color) !important; color: #1a1a1a !important; border-radius: 50px !important; padding: 14px !important; font-family: inherit !important; font-size: 1rem !important; font-weight: 800 !important; cursor: pointer; width: 100%; transition: transform 0.1s; text-transform: uppercase; margin-top: 10px; box-shadow: var(--glossy-inset); } 
+  .btn-primary-modal:active { transform: scale(0.97); } 
+  .btn-secondary-modal { background: var(--input-fill) !important; border: 2px solid var(--border-color) !important; color: var(--text-dark) !important; border-radius: 50px !important; padding: 14px !important; font-family: inherit !important; font-size: 1rem !important; font-weight: 800 !important; cursor: pointer; width: 100%; transition: transform 0.1s; text-transform: uppercase; margin-top: 5px; } 
+  .btn-secondary-modal:active { transform: scale(0.97); }
+  .fortune-paper { background: var(--grad-btn-yellow) !important; color: #1a1a1a !important; border: 2px dashed var(--border-color) !important; padding: 25px !important; border-radius: 15px !important; font-size: 1.1rem; line-height: 1.6; text-align: center; font-weight: 700; margin-bottom: 25px; box-shadow: var(--glossy-inset); }
+
+  /* STICKY NOTES RETRO */
+  #scrapbook-area { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 50; overflow: visible; } 
+  .sticky-note { position: absolute; width: 220px; min-height: 200px; border: 2px solid var(--border-color); border-radius: 0 25px 0 25px; padding: 30px 15px 15px 15px; font-family: inherit; font-size: 0.95rem; font-weight: 600; color: #1a1a1a !important; cursor: grab; pointer-events: auto; transition: transform 0.1s; background: var(--grad-btn-blue); touch-action: none; box-shadow: inset 0 0 15px rgba(255,255,255,0.4); } 
+  .sticky-note:active { cursor: grabbing; transform: scale(1.05); z-index: 100 !important; } 
+  .pin { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 16px; height: 16px; background: var(--grad-btn-pink); border-radius: 50%; border: 2px solid var(--border-color); box-shadow: inset -2px -2px 4px rgba(0,0,0,0.2), var(--glossy-inset); } 
+  .note-actions { position: absolute; top: 8px; right: 8px; display: none; gap: 6px; } 
+  .sticky-note:hover .note-actions { display: flex; } 
+  .btn-note-action { background: #fff; border: 2px solid var(--border-color); border-radius: 50%; width: 26px; height: 26px; cursor: pointer; font-size: 10px; display: flex; justify-content: center; align-items: center; transition: transform 0.1s; color: #1a1a1a; } 
+  .btn-note-action:active { transform: scale(0.9); }
+
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } } 
+  @keyframes popIn { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } } 
+  @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+</style>
+</head>
+<body>
+
+<svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
+  <linearGradient id="phoningHeart" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="var(--heart-top)" />
+    <stop offset="100%" stop-color="var(--heart-bot)" />
+  </linearGradient>
+</svg>
+
+<div class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Theme">☀️</div>
+
+<div class="layout-wrapper">
+  <div class="left-column" id="left-col">
+    <div class="container glass-panel" id="panel-alarm">
+      <header>
+        <div class="mascot-wrap" id="mascotWrap">
+          <img src="calla1.png" class="m1" alt="Mascot 1">
+          <img src="calla2.png" class="m2" alt="Mascot 2">
+        </div>
+        <h1>CALLA'S PAGE</h1>
+        <p class="subtitle">rise & shine 🌼</p>
+      </header>
+      <div class="clock-box">
+        <div id="live-date">MON, 20 APR</div>
+        <div id="live-clock">00:00:00</div>
+        <span id="snoozeBadge" class="badge snooze" style="display:none;">Snooze 5m 😴</span>
+      </div>
+      <div class="form-box">
+        <div class="input-row">
+          <div class="input-group time">
+            <label>TIME</label>
+            <div class="unified-time-picker">
+              <select id="hourSelect" class="time-select"></select>
+              <span style="font-family: inherit; font-weight:800; color:var(--text-dark)">:</span>
+              <select id="minSelect" class="time-select"></select>
+            </div>
+          </div>
+          <div class="input-group msg">
+            <label>MESSAGE</label>
+            <input type="text" id="labelInput" name="alarmMessage" autocomplete="off" placeholder="Wake up!...">
+          </div>
+        </div>
+        <div class="days-grid" id="mainDaysGrid">
+          <button class="day-btn" data-d="Sun">S</button><button class="day-btn" data-d="Mon">M</button><button class="day-btn" data-d="Tue">T</button><button class="day-btn" data-d="Wed">W</button><button class="day-btn" data-d="Thu">T</button><button class="day-btn" data-d="Fri">F</button><button class="day-btn" data-d="Sat">S</button>
+        </div>
+        <button class="btn-pixel" onclick="saveAlarm()">+ ADD ALARM</button>
+      </div>
+      <h2 class="section-title">Active Alarms 🌸 <span id="activeAlarmBadge" class="badge" style="display:none;">0 Active</span></h2>
+      <div id="alarmList"></div>
+    </div>
+
+    <div class="container glass-panel music-player" id="panel-music">
+      <audio id="bg-audio"></audio>
+      <div class="music-info-row" id="music-info-row" onclick="togglePlaylist()">
+        <div class="vinyl-record" id="vinyl-disc"><div class="vinyl-center"></div></div>
+        <div class="song-details">
+          <div class="song-title" id="m-title">Loading...</div>
+          <div class="song-artist" id="m-artist">...</div>
+        </div>
+        <div class="playlist-arrow" id="playlist-arrow">▼</div>
+      </div>
+      <div id="playlist-dropdown">
+        <div id="playlist-items"></div>
+      </div>
+      <div class="progress-bar-container" id="progress-container" onclick="seekMusic(event)">
+        <div class="progress-fill" id="progress-fill"></div>
+        <div class="progress-dot" id="progress-dot"></div>
+      </div>
+      <div class="music-controls">
+        <button class="control-btn mode-btn active" id="mode-btn" onclick="cyclePlayMode()" title="Repeat All" style="width:32px;height:32px;">
+          <svg id="mode-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17,1 21,5 17,9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7,23 3,19 7,15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+          </svg>
+        </button>
+        <button class="control-btn" onclick="prevSong()"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
+        <button class="control-btn play" id="play-btn" onclick="toggleMusic()">
+          <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <svg id="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <button class="control-btn" onclick="nextSong()"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
+        <div class="volume-wrapper">
+          <button class="control-btn" id="vol-btn" onclick="toggleVolDropdown(event)"><svg id="vol-icon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>
+          <div class="volume-dropdown" id="vol-dropdown-box" onclick="event.stopPropagation()">
+            <input type="range" class="vol-slider" id="vol-slider" min="0" max="1" step="0.05" value="0.5" oninput="changeVolume()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-column" id="right-col">
+    <div class="giant-heart-bwrap" id="panel-heart">
+      <div class="giant-heart-wrapper" onclick="openAddNoteModal()">
+        <svg viewBox="0 0 32 29.6" class="giant-heart-svg">
+          <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+        </svg>
+        <div class="giant-heart-text">NEW<br>NOTE</div>
+      </div>
+    </div>
+
+    <div class="glass-panel split-panel" id="panel-mini-tools">
+      <div class="timer-container">
+        <h2 class="section-title" style="justify-content: center; margin-bottom: 0;">Focus 🍅</h2>
+        <div class="timer-display" id="pomodoro-time" onclick="editTimer()" title="Tap to edit minutes!">25:00</div>
+        <div class="timer-hint">Tap to edit 👆</div>
+        <div class="timer-controls">
+          <button class="btn-action" style="background:var(--grad-btn-lime);" onclick="toggleTimer()" id="timer-btn">▶</button>
+          <button class="btn-action" style="background:var(--grad-btn-pink);" onclick="resetTimer()">↻</button>
+        </div>
+        <input type="text" name="timerMode" autocomplete="off" class="timer-mode" id="timer-mode-text" value="Work (25m)" title="You can edit this!">
+      </div>
+      <div class="panel-divider"></div>
+      <div class="fortune-cookie-container">
+        <h2 class="section-title" style="justify-content: center; margin-bottom: 10px;">Fortune 🥠</h2>
+        <div class="cookie-btn" onclick="crackCookie()" title="Crack the cookie!">🥠</div>
+        <div class="cookie-info">Claims: <span id="cookieCount">5</span>/5</div>
+      </div>
+    </div>
+
+    <div class="container glass-panel" id="panel-last-fortune">
+      <div class="last-fortune-box">
+        <p id="lastFortuneText" class="last-fortune-text">Crack a cookie to reveal your fortune! ✨</p>
+      </div>
+    </div>
+    <div class="container glass-panel" id="panel-todo">
+      <div class="todo-header">📝 TASKS</div>
+      <div class="form-box" style="margin-bottom: 15px; border:none; background:transparent; padding:0;">
+        <div class="input-group">
+          <label style="color:var(--text-dark);">QUICK TODOS</label>
+          <input type="text" name="todoTask" autocomplete="off" id="todoInput" placeholder="Type & hit Enter..." onkeypress="handleTodoEnter(event)">
+        </div>
+        <button class="btn-pixel" style="margin-top:10px; background:var(--grad-btn-pink);" onclick="addTodo()">+ ADD TO LIST</button>
+      </div>
+      
+      <h2 class="section-title" style="margin:20px 0 10px 0;">To-Do List 📌</h2>
+      
+      <div class="love-meter-wrapper">
+        <div class="love-meter-track">
+          <div class="love-meter-fill" id="todo-progress-fill"></div>
+          <div class="love-meter-icon" id="todo-progress-icon">🍀</div>
+        </div>
+        <div class="love-meter-text" id="todo-progress-text">0%</div>
+      </div>
+      
+      <div id="todoList"></div>
+
+      <div id="closedNotesContainer" style="display: none;">
+        <hr style="border: 1px dashed var(--border-color); margin: 20px 0 15px 0; opacity:0.5;">
+        <h2 class="section-title">Archived Notes 🗂️</h2>
+        <div id="closedNotesList"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="scrapbook-area"></div>
+
+<div class="overlay" id="customAlertModal" role="dialog" aria-hidden="true">
+  <div class="edit-modal-box" style="text-align: center;">
+    <div class="edit-modal-title" id="alertTitle">ATTENTION 🌸</div>
+    <p id="alertMessage" style="font-size: 1rem; margin-bottom: 25px; line-height: 1.5; font-weight: 600; color:var(--text-dark);"></p>
+    <button class="btn-primary-modal" onclick="closeModals()">GOT IT! ✨</button>
+  </div>
+</div>
+
+<div class="overlay" id="editTimerModal" role="dialog" aria-hidden="true">
+  <div class="edit-modal-box">
+    <div class="edit-modal-title">SET TIMER 🍅</div>
+    <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:15px;">
+      <div class="input-group">
+        <label>Focus (Mins)</label>
+        <input type="number" name="workTime" autocomplete="off" id="workTimeInput" value="25" min="1">
+      </div>
+      <div class="input-group">
+        <label>Chill (Mins)</label>
+        <input type="number" name="breakTime" autocomplete="off" id="breakTimeInput" value="5" min="1">
+      </div>
+    </div>
+    <div style="display:flex; gap:10px; margin-top:10px;">
+      <button class="btn-primary-modal" style="flex:1;" onclick="saveCustomTimer()">SAVE</button>
+      <button class="btn-secondary-modal" style="flex:1;" onclick="closeModals()">CANCEL</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="addNoteModal" role="dialog" aria-hidden="true"><div class="edit-modal-box"><div class="edit-modal-title">WRITE A NOTE 📌</div><div style="display:flex; flex-direction:column; gap:8px;"><label>Note Content</label><textarea id="noteInput" name="newNote" autocomplete="off" style="height:100px;"></textarea></div><div style="display:flex; gap:10px; margin-top:20px;"><button class="btn-primary-modal" style="flex:1;" onclick="saveNote()">STICK IT</button><button class="btn-secondary-modal" style="flex:1;" onclick="closeModals()">CANCEL</button></div></div></div>
+<div class="overlay" id="editNoteModal" role="dialog" aria-hidden="true"><div class="edit-modal-box"><div class="edit-modal-title">EDIT NOTE ✏️</div><div style="display:flex; flex-direction:column; gap:8px;"><label>Edit your note</label><textarea id="editNoteInput" name="editNote" autocomplete="off" style="height:100px;"></textarea></div><div style="display:flex; gap:10px; margin-top:20px;"><button class="btn-primary-modal" style="flex:1;" onclick="saveEditedNote()">SAVE</button><button class="btn-secondary-modal" style="flex:1;" onclick="closeModals()">CANCEL</button></div></div></div>
+<div class="overlay" id="editAlarmModal" role="dialog" aria-hidden="true"><div class="edit-modal-box"><div class="edit-modal-title">EDIT ALARM ✏️</div><div class="input-group" style="margin-bottom:12px;"><label>NEW TIME</label><input type="time" name="editAlarmTime" autocomplete="off" id="editAlarmTimeInput"></div><div class="input-group" style="margin-bottom:12px;"><label>NEW MSG</label><input type="text" name="editAlarmMsg" autocomplete="off" id="editAlarmLabelInput"></div><div class="input-group"><label>DAYS</label><div class="days-grid" id="editDaysGrid" style="margin-bottom: 0;"><button class="day-btn" data-d="Sun">S</button><button class="day-btn" data-d="Mon">M</button><button class="day-btn" data-d="Tue">T</button><button class="day-btn" data-d="Wed">W</button><button class="day-btn" data-d="Thu">T</button><button class="day-btn" data-d="Fri">F</button><button class="day-btn" data-d="Sat">S</button></div></div><div style="display:flex; gap:10px; margin-top:20px;"><button class="btn-primary-modal" style="flex:1;" onclick="saveEditedAlarm()">SAVE</button><button class="btn-secondary-modal" style="flex:1;" onclick="closeModals()">CANCEL</button></div></div></div>
+<div class="overlay" id="editTodoModal" role="dialog" aria-hidden="true"><div class="edit-modal-box"><div class="edit-modal-title">EDIT TASK ✏️</div><div style="display:flex; flex-direction:column; gap:8px;"><label>Your task</label><input type="text" name="editTodoMsg" autocomplete="off" id="editTodoInput"></div><div style="display:flex; gap:10px; margin-top:20px;"><button class="btn-primary-modal" style="flex:1;" onclick="saveEditedTodo()">SAVE</button><button class="btn-secondary-modal" style="flex:1;" onclick="closeModals()">CANCEL</button></div></div></div>
+<div class="overlay" id="fortuneModal" role="dialog" aria-hidden="true"><div class="edit-modal-box"><div class="edit-modal-title" style="margin-bottom: 15px;">📜 DAILY FORTUNE 📜</div><div id="fortuneText" class="fortune-paper">Unfolding...</div><button class="btn-primary-modal" onclick="closeModals()">MANIFESTING! 🌸</button></div></div>
+
+<div class="overlay" id="ringOverlay" role="dialog" aria-hidden="true"><div class="edit-modal-box" style="text-align:center;">
+  <div class="ring-mascot-wrap" id="ringMascotWrap">
+    <img src="calla1.png" class="m1" alt="Wake Up!">
+    <img src="calla2.png" class="m2" alt="Wake Up!">
+  </div>
+  <div id="ringTime" style="font-family: 'Press Start 2P', cursive; font-size: 2.5rem; margin: 15px 0; color: var(--text-dark);">00:00</div>
+  <div id="ringMsg" style="font-size: 1.4rem; font-weight: 800; margin-bottom: 25px; color:var(--text-dark);">WAKE UP!</div>
+  <button class="btn-secondary-modal" style="margin-bottom: 10px;" onclick="snooze()">5 more mins 😴</button>
+  <button class="btn-primary-modal" onclick="stopRinging()">I'M UP I'M UP! 🏃💨</button>
+</div></div>
+
+<script>
+  function renderAppleEmoji() {
+    if (typeof twemoji !== 'undefined') {
+      twemoji.parse(document.body, {
+        callback: function(icon, options) {
+          return 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/' + icon + '.png';
+        }
+      });
+    }
+  }
+
+  // GLOBAL STATE — harus di atas semua fungsi
+  let playlistOpen = false;
+
+  function safeGetStorage(key, defaultVal) {
+    try {
+      const data = localStorage.getItem(key);
+      return data ? JSON.parse(data) : defaultVal;
+    } catch (e) {
+      console.error("Storage error:", e);
+      return defaultVal;
+    }
+  }
+
+  let isDarkMode = localStorage.getItem('bestie_darkmode') === 'true';
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  if (isDarkMode) { document.body.classList.add('dark-mode'); themeToggleBtn.innerText = '🌙'; }
+  function toggleTheme() {
+    isDarkMode = !isDarkMode;
+    document.body.classList.toggle('dark-mode', isDarkMode);
+    localStorage.setItem('bestie_darkmode', isDarkMode);
+    themeToggleBtn.innerText = isDarkMode ? '🌙' : '☀️';
+    updateBackground(new Date().getHours());
+    renderAppleEmoji(); 
+  }
+
+  const mascotWrap    = document.getElementById('mascotWrap');
+  const ringMascotWrap = document.getElementById('ringMascotWrap');
+  let mascotFlipped = false;
+
+  setInterval(() => {
+    mascotFlipped = !mascotFlipped;
+    if(mascotWrap) mascotWrap.classList.toggle('flip', mascotFlipped);
+  }, 700);
+
+  let ringFlipInterval = null;
+  function startRingMascotFlip() {
+    ringFlipInterval = setInterval(() => {
+      if(ringMascotWrap) ringMascotWrap.classList.toggle('flip');
+    }, 300);
+  }
+  function stopRingMascotFlip() {
+    clearInterval(ringFlipInterval);
+    ringFlipInterval = null;
+    if(ringMascotWrap) ringMascotWrap.classList.remove('flip');
+  }
+
+  const playlist = [
+  { title: "One Summer's Day",    artist: "Spirited Away 🍃",   src: "https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3" },
+  { title: "Lofi Girl",           artist: "Lofi Chill 🎧",      src: "https://cdn.pixabay.com/audio/2026/04/08/audio_8ccf6e3f6f.mp3" },
+  { title: "Good Night Lofi",     artist: "Cozy Chill 🌙",      src: "https://cdn.pixabay.com/audio/2023/07/30/audio_e0908e8569.mp3" },
+  { title: "Lofi Chill Music",    artist: "Easy Listening ☁️",  src: "https://cdn.pixabay.com/audio/2026/03/05/audio_a65f7fa52e.mp3" },
+  { title: "Deep Melodic",        artist: "Electronic 🌊",      src: "https://cdn.pixabay.com/audio/2026/01/13/audio_1021be955b.mp3" },
+  { title: "Dreamy Lofi",         artist: "Soft Vibes 🌸",      src: "https://cdn.pixabay.com/audio/2026/01/13/audio_0903d7c6c1.mp3" },
+  { title: "Rainy Day Lofi",      artist: "Calm Study 📖",      src: "https://cdn.pixabay.com/audio/2025/05/15/audio_8a8c21b82d.mp3" },
+  { title: "Midnight Chill",      artist: "Late Night 🌌",      src: "https://cdn.pixabay.com/audio/2025/12/05/audio_6ee4e0339d.mp3" },
+  { title: "Analog Warmth",       artist: "Vintage Lofi 🎞️",    src: "https://cdn.pixabay.com/audio/2026/02/15/audio_808b227045.mp3" },
+  { title: "Morning Haze",        artist: "Ambient ✨",         src: "https://cdn.pixabay.com/audio/2026/01/15/audio_632e4a221e.mp3" },
+];
+
+  const audioEl     = document.getElementById('bg-audio');
+  const playIcon    = document.getElementById('play-icon');
+  const pauseIcon   = document.getElementById('pause-icon');
+  const vinylDisc   = document.getElementById('vinyl-disc');
+  const progressFill = document.getElementById('progress-fill');
+  const progressDot  = document.getElementById('progress-dot');
+  let currentSongIndex = 0;
+  let isPlaying = false;
+  audioEl.volume = 0.5;
+
+  function loadSong(index) {
+    if (!playlist[index] || !playlist[index].src) return;
+    audioEl.src = playlist[index].src;
+    document.getElementById('m-title').innerText  = playlist[index].title;
+    document.getElementById('m-artist').innerText = playlist[index].artist;
+    renderAppleEmoji();
+    if (isPlaying) audioEl.play().catch(e => console.log(e));
+    if (playlistOpen) renderPlaylistItems(); // refresh highlight
+  }
+  // PLAYBACK MODES: 'repeat-all' | 'repeat-one' | 'shuffle'
+  const MODES = [
+    {
+      key: 'repeat-all',
+      label: 'Repeat All',
+      svg: `<polyline points="17,1 21,5 17,9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7,23 3,19 7,15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>`
+    },
+    {
+      key: 'repeat-one',
+      label: 'Repeat One',
+      svg: `<polyline points="17,1 21,5 17,9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7,23 3,19 7,15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/><line x1="12" y1="9" x2="12" y2="15" stroke-width="2.5"/>`
+    },
+    {
+      key: 'shuffle',
+      label: 'Shuffle',
+      svg: `<polyline points="16,3 21,3 21,8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21,16 21,21 16,21"/><line x1="15" y1="15" x2="21" y2="21"/>`
+    },
+  ];
+  let playModeIndex = 0;
+
+  function cyclePlayMode() {
+    playModeIndex = (playModeIndex + 1) % MODES.length;
+    const mode = MODES[playModeIndex];
+    const btn  = document.getElementById('mode-btn');
+    const icon = document.getElementById('mode-icon');
+    icon.innerHTML = mode.svg;
+    btn.title      = mode.label;
+  }
+
+  function nextSong() {
+    const mode = MODES[playModeIndex].key;
+    if (mode === 'repeat-one') {
+      // restart lagu yang sama
+      audioEl.currentTime = 0;
+      if (isPlaying) audioEl.play().catch(e => console.log(e));
+      return;
+    }
+    if (mode === 'shuffle') {
+      // pilih random, hindari lagu yang sama
+      let r;
+      do { r = Math.floor(Math.random() * playlist.length); }
+      while (r === currentSongIndex && playlist.length > 1);
+      currentSongIndex = r;
+    } else {
+      // repeat-all: maju ke lagu berikutnya, wrap ke 0
+      currentSongIndex = (currentSongIndex + 1) % playlist.length;
+    }
+    loadSong(currentSongIndex);
+  }
+
+  function prevSong() {
+    const mode = MODES[playModeIndex].key;
+    if (mode === 'shuffle') {
+      // prev saat shuffle = random juga
+      let r;
+      do { r = Math.floor(Math.random() * playlist.length); }
+      while (r === currentSongIndex && playlist.length > 1);
+      currentSongIndex = r;
+    } else {
+      currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
+    }
+    loadSong(currentSongIndex);
+  }
+
+  audioEl.addEventListener('ended', () => nextSong());
+
+  function toggleMusic() {
+    if (audioEl.paused) {
+      if (playlist[currentSongIndex].src) audioEl.play().catch(e => console.log(e));
+      isPlaying = true; playIcon.style.display = 'none'; pauseIcon.style.display = 'block';
+      vinylDisc.style.animationPlayState = 'running';
+    } else {
+      audioEl.pause();
+      isPlaying = false; playIcon.style.display = 'block'; pauseIcon.style.display = 'none';
+      vinylDisc.style.animationPlayState = 'paused';
+    }
+  }
+  audioEl.addEventListener('timeupdate', () => {
+    if (audioEl.duration) {
+      const pct = (audioEl.currentTime / audioEl.duration) * 100;
+      progressFill.style.width = pct + '%';
+      progressDot.style.left   = pct + '%';
+    }
+  });
+  function seekMusic(e) {
+    const r = document.getElementById('progress-container').getBoundingClientRect();
+    const pct = Math.max(0, Math.min((e.clientX - r.left) / r.width, 1));
+    audioEl.currentTime = pct * audioEl.duration;
+  }
+  function toggleVolDropdown(e) { e.stopPropagation(); document.getElementById('vol-dropdown-box').classList.toggle('show-vol'); }
+  document.addEventListener('click', (e) => { if (!e.target.closest('.volume-wrapper')) document.getElementById('vol-dropdown-box').classList.remove('show-vol'); });
+  function changeVolume() { audioEl.volume = document.getElementById('vol-slider').value; }
+  loadSong(currentSongIndex);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      if (audioCtxAlarm) audioCtxAlarm.suspend().catch(() => {});
+    } else {
+      if (audioCtxAlarm && isRinging) audioCtxAlarm.resume().catch(() => {});
+    }
+  });
+
+  // ============================================================
+  // PLAYLIST DROPDOWN
+  // ============================================================
+  function togglePlaylist() {
+    playlistOpen = !playlistOpen;
+    const dropdown = document.getElementById('playlist-dropdown');
+    const arrow    = document.getElementById('playlist-arrow');
+    if (playlistOpen) {
+      renderPlaylistItems();
+      dropdown.style.display = 'block';
+      arrow.classList.add('open');
+    } else {
+      dropdown.style.display = 'none';
+      arrow.classList.remove('open');
+    }
+  }
+
+  function renderPlaylistItems() {
+    const container = document.getElementById('playlist-items');
+    container.innerHTML = playlist.map((song, i) => `
+      <div class="playlist-item ${i === currentSongIndex ? 'now-playing' : ''}"
+           onclick="selectSong(event, ${i})">
+        <div class="track-num">${String(i + 1).padStart(2, '0')}</div>
+        <div class="track-info">
+          <div class="track-title">${song.title}</div>
+          <div class="track-artist">${song.artist}</div>
+        </div>
+        ${i === currentSongIndex ? '<div class="track-playing-icon">♪</div>' : ''}
+      </div>
+    `).join('');
+    renderAppleEmoji();
+  }
+
+  function selectSong(e, index) {
+    e.stopPropagation(); // jangan trigger togglePlaylist lagi
+    currentSongIndex = index;
+    isPlaying = true;
+    loadSong(index);
+    document.getElementById('play-icon').style.display  = 'none';
+    document.getElementById('pause-icon').style.display = 'block';
+    document.getElementById('vinyl-disc').style.animationPlayState = 'running';
+    // tutup dropdown
+    playlistOpen = false;
+    document.getElementById('playlist-dropdown').style.display = 'none';
+    document.getElementById('playlist-arrow').classList.remove('open');
+  }
+
+  // tutup dropdown kalau klik di luar music player
+  document.addEventListener('click', (e) => {
+    if (playlistOpen && !e.target.closest('#panel-music')) {
+      playlistOpen = false;
+      document.getElementById('playlist-dropdown').style.display = 'none';
+      document.getElementById('playlist-arrow').classList.remove('open');
+    }
+  });
+
+  function showCustomAlert(title, msg) {
+    document.getElementById('alertTitle').innerText   = title;
+    document.getElementById('alertMessage').innerText = msg;
+    document.getElementById('customAlertModal').classList.add('show');
+    renderAppleEmoji();
+  }
+  function closeModals() {
+    document.querySelectorAll('.overlay').forEach(el => el.classList.remove('show'));
+    currentEditAlarmId = null; currentEditNoteId = null; currentEditTodoId = null;
+  }
+  document.querySelectorAll('.overlay').forEach(overlay => {
+    overlay.addEventListener('click', function(e) {
+      if (e.target === this && this.id !== 'ringOverlay') closeModals();
+    });
+  });
+
+  let workDuration = 25, breakDuration = 5, pomodoroTime = 25 * 60;
+  let timerInterval = null, isTimerRunning = false, isWorkMode = true;
+
+  function updateTimerDisplay() {
+    const m = String(Math.floor(pomodoroTime / 60)).padStart(2, '0');
+    const s = String(pomodoroTime % 60).padStart(2, '0');
+    document.getElementById('pomodoro-time').innerText = `${m}:${s}`;
+  }
+  function editTimer() {
+    if (isTimerRunning) return;
+    document.getElementById('workTimeInput').value  = workDuration;
+    document.getElementById('breakTimeInput').value = breakDuration;
+    document.getElementById('editTimerModal').classList.add('show');
+  }
+  function saveCustomTimer() {
+    const w = parseInt(document.getElementById('workTimeInput').value);
+    const b = parseInt(document.getElementById('breakTimeInput').value);
+    if (w > 0 && b > 0) {
+      workDuration = w; breakDuration = b;
+      pomodoroTime = isWorkMode ? w * 60 : b * 60;
+      updateTimerDisplay();
+      document.getElementById('timer-mode-text').value = isWorkMode ? `Work (${w}m)` : `Chill (${b}m)`;
+    }
+    closeModals();
+  }
+  function switchFocusMode(isActive) {
+    if (document.startViewTransition) { document.startViewTransition(() => { document.body.classList.toggle('focus-mode-active', isActive); }); }
+    else { document.body.classList.toggle('focus-mode-active', isActive); }
+  }
+  function toggleTimer() {
+    const btn = document.getElementById('timer-btn');
+    if (isTimerRunning) { clearInterval(timerInterval); isTimerRunning = false; btn.innerText = "▶"; switchFocusMode(false); }
+    else {
+      isTimerRunning = true; btn.innerText = "⏸"; switchFocusMode(true);
+      timerInterval = setInterval(() => {
+        if (pomodoroTime > 0) { pomodoroTime--; updateTimerDisplay(); }
+        else {
+          clearInterval(timerInterval); isTimerRunning = false; btn.innerText = "▶"; switchFocusMode(false);
+          if (isWorkMode) { showCustomAlert("TIME'S UP 🍅", `Good hustle! Let's take a ${breakDuration} min break ☕`); isWorkMode = false; pomodoroTime = breakDuration * 60; document.getElementById('timer-mode-text').value = `Chill (${breakDuration}m)`; }
+          else { showCustomAlert("BREAK'S OVER 🍅", `Break is over! Time to get back on the grind 🚀`); isWorkMode = true; pomodoroTime = workDuration * 60; document.getElementById('timer-mode-text').value = `Work (${workDuration}m)`; }
+          updateTimerDisplay();
+        }
+      }, 1000);
+    }
+  }
+  function resetTimer() { clearInterval(timerInterval); isTimerRunning = false; document.getElementById('timer-btn').innerText = "▶"; switchFocusMode(false); pomodoroTime = isWorkMode ? workDuration * 60 : breakDuration * 60; updateTimerDisplay(); }
+  updateTimerDisplay();
+
+  const fortuneQuotes = ["Good news is sneaking up on you today! ✨","Don't forget to hydrate! You need ammo! ☕💧","All that hard work is gonna pay off real soon! 🌱","Someone is secretly super inspired by what you do! 🎨","Lucky girl era! Get ready for a little surprise today. 🎁","If you're exhausted, take a break. You're doing great! 💖","The universe is cooking up a beautiful plot twist for you. 🌌","A crazy good idea is gonna hit you out of nowhere, write it down! 💡","That choice you doubted? Turns out it's the absolute right move! 🛣️","You're looking stunning today, own it! ✨💅"];
+  
+  // RESET KEY UNTUK HISTORY FORTUNE BARU
+  let fortuneData = safeGetStorage('phoning_fortune_v1', { date: new Date().toDateString(), count: 0, lastQuote: "" });
+  
+  function updateCookieCountUI() {
+    if (fortuneData.date !== new Date().toDateString()) { 
+      fortuneData = { date: new Date().toDateString(), count: 0, lastQuote: "" }; 
+      localStorage.setItem('phoning_fortune_v1', JSON.stringify(fortuneData)); 
+    }
+    document.getElementById('cookieCount').innerText = 5 - fortuneData.count;
+    
+    const lastQuoteEl = document.getElementById('lastFortuneText');
+    if (lastQuoteEl) {
+      lastQuoteEl.innerText = fortuneData.lastQuote ? `"${fortuneData.lastQuote}"` : "Crack a cookie to reveal your fortune! ✨";
+    }
+  }
+  
+  function crackCookie() {
+    if (fortuneData.date !== new Date().toDateString()) fortuneData = { date: new Date().toDateString(), count: 0, lastQuote: "" };
+    if (fortuneData.count >= 5) { showCustomAlert("ALL OUT 🥺", "You've cracked all your cookies for today! Try again tomorrow 🥠✨"); return; }
+    
+    const quote = fortuneQuotes[Math.floor(Math.random() * fortuneQuotes.length)];
+    fortuneData.count++; 
+    fortuneData.lastQuote = quote;
+    localStorage.setItem('phoning_fortune_v1', JSON.stringify(fortuneData)); 
+    updateCookieCountUI();
+    
+    document.getElementById('fortuneText').innerText = quote;
+    document.getElementById('fortuneModal').classList.add('show');
+    renderAppleEmoji(); 
+  }
+  updateCookieCountUI();
+
+  let alarms      = safeGetStorage('bestie_alarms_v22', []);
+  let todos       = safeGetStorage('bestie_todos_v22', []);
+  let stickyNotes = safeGetStorage('bestie_stickynotes_v22', []);
+  let isRinging = false, audioCtxAlarm, beepInterval, snoozedAlarm = null, snoozeTimer = null;
+  let currentEditNoteId = null, currentEditAlarmId = null, currentEditTodoId = null;
+
+  const hSel = document.getElementById('hourSelect');
+  const mSel = document.getElementById('minSelect');
+  if(hSel && mSel) {
+    for (let i = 0; i < 24; i++) hSel.innerHTML += `<option value="${String(i).padStart(2,'0')}">${String(i).padStart(2,'0')}</option>`;
+    for (let i = 0; i < 60; i++) mSel.innerHTML += `<option value="${String(i).padStart(2,'0')}">${String(i).padStart(2,'0')}</option>`;
+    hSel.value = "07"; mSel.value = "00";
+  }
+
+  let _lastHour = -1; 
+
+  setInterval(() => {
+    const now = new Date();
+    const h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
+    
+    document.getElementById('live-clock').innerText =
+      String(h).padStart(2,'0') + ":" + String(m).padStart(2,'0') + ":" + String(s).padStart(2,'0');
+      
+    const days   = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+    const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+    document.getElementById('live-date').innerText = days[now.getDay()] + ", " + now.getDate() + " " + months[now.getMonth()];
+
+    if (h !== _lastHour) { _lastHour = h; updateBackground(h); }
+  }, 1000);
+
+  setInterval(() => { checkAlarms(new Date()); }, 10000);
+  checkAlarms(new Date());
+
+  function updateBackground(hour) {
+    if (isDarkMode) { 
+      document.body.style.background = "linear-gradient(135deg, #131521 0%, #221c35 50%, #16243d 100%)"; 
+      return; 
+    }
+    
+    if (hour >= 5  && hour < 11) document.body.style.background = "linear-gradient(180deg, #BCE4FF 0%, #ffffff 80%)"; 
+    else if (hour >= 11 && hour < 15) document.body.style.background = "linear-gradient(180deg, #E2F294 0%, #ffffff 80%)"; 
+    else if (hour >= 15 && hour < 18) document.body.style.background = "linear-gradient(180deg, #FFB3C6 0%, #ffffff 80%)"; 
+    else document.body.style.background = "linear-gradient(180deg, #C2C6F9 0%, #ffffff 80%)"; 
+  }
+
+  function updateBadges() {
+    const count = alarms.filter(a => a.active).length;
+    const b = document.getElementById('activeAlarmBadge');
+    if(b) {
+      b.style.display = count > 0 ? 'inline-block' : 'none';
+      b.innerText = `${count} Active`;
+    }
+  }
+
+  function checkAlarms(now) {
+    if (isRinging || snoozeTimer) return;
+    const timeStr = String(now.getHours()).padStart(2,'0') + ":" + String(now.getMinutes()).padStart(2,'0');
+    const today   = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][now.getDay()];
+    const ringKey = now.toDateString() + " @ " + timeStr;
+    for (const a of alarms) {
+      if (a.active && a.time === timeStr && (!a.days || a.days.length === 0 || a.days.includes(today)) && a.lastRing !== ringKey) {
+        a.lastRing = ringKey;
+        localStorage.setItem('bestie_alarms_v22', JSON.stringify(alarms));
+        triggerAlarm(a); break;
+      }
+    }
+  }
+
+  function triggerAlarm(a) {
+    isRinging = true; snoozedAlarm = a;
+    document.getElementById('ringTime').innerText = a.time || "00:00";
+    document.getElementById('ringMsg').innerText  = a.label  || "WAKE UP!";
+    document.getElementById('ringOverlay').classList.add('show');
+    startRingMascotFlip(); 
+    renderAppleEmoji(); 
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (AC) {
+      audioCtxAlarm = new AC();
+      beepInterval = setInterval(() => {
+        try {
+          const osc = audioCtxAlarm.createOscillator(), gain = audioCtxAlarm.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(880,  audioCtxAlarm.currentTime);
+          osc.frequency.setValueAtTime(1046, audioCtxAlarm.currentTime + 0.15);
+          gain.gain.setValueAtTime(0.1, audioCtxAlarm.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, audioCtxAlarm.currentTime + 0.3);
+          osc.connect(gain); gain.connect(audioCtxAlarm.destination);
+          osc.start(); osc.stop(audioCtxAlarm.currentTime + 0.3);
+        } catch(e) {}
+      }, 500);
+    }
+  }
+
+  function stopRinging() {
+    isRinging = false;
+    clearInterval(beepInterval);
+    if (audioCtxAlarm) { audioCtxAlarm.close().catch(() => {}); audioCtxAlarm = null; }
+    stopRingMascotFlip(); 
+    closeModals();
+    if (snoozeTimer) { clearTimeout(snoozeTimer); snoozeTimer = null; document.getElementById('snoozeBadge').style.display = 'none'; }
+  }
+  function snooze() {
+    stopRinging();
+    document.getElementById('snoozeBadge').style.display = 'inline-block';
+    snoozeTimer = setTimeout(() => {
+      document.getElementById('snoozeBadge').style.display = 'none';
+      snoozeTimer = null;
+      triggerAlarm(snoozedAlarm);
+    }, 300000);
+  }
+
+  function saveAlarm() {
+    alarms.push({ id: Date.now(), time: hSel.value + ":" + mSel.value, label: document.getElementById('labelInput').value || "Wake up!", active: true, days: [...document.querySelectorAll('#mainDaysGrid .day-btn.on')].map(b => b.dataset.d), lastRing: null });
+    localStorage.setItem('bestie_alarms_v22', JSON.stringify(alarms));
+    document.querySelectorAll('#mainDaysGrid .day-btn.on').forEach(b => b.classList.remove('on'));
+    document.getElementById('labelInput').value = '';
+    renderAlarms();
+    updateBadges(); 
+  }
+  
+  function renderAlarms() {
+    const list = document.getElementById('alarmList');
+    if (!alarms.length) { list.innerHTML = `<p style="text-align:center; opacity:0.8; font-weight:700; padding:10px; color:var(--text-dark);">No alarms set yet 🥺</p>`; renderAppleEmoji(); return; }
+    
+    list.innerHTML = alarms.map(a => {
+      let daysLabel = 'Once';
+      if (a.days && a.days.length === 7) {
+        daysLabel = 'Everyday';
+      } else if (a.days && a.days.length > 0) {
+        daysLabel = a.days.join(', ');
+      }
+      
+      return `
+      <div class="alarm-card ${a.active ? '' : 'off'}">
+        <div class="alarm-info">
+          <h3>${a.time}</h3>
+          <p>${a.label}</p>
+          <small>${daysLabel}</small>
+        </div>
+        <div class="action-group">
+          <label class="toggle"><input type="checkbox" ${a.active ? 'checked' : ''} onchange="toggleAlarm(${a.id})"><span class="slider"></span></label>
+          <button class="btn-action btn-edit" onclick="openEditAlarm(${a.id})">✏️</button>
+          <button class="btn-action btn-del" onclick="delAlarm(${a.id})">✖</button>
+        </div>
+      </div>`;
+    }).join('');
+    renderAppleEmoji();
+  }
+  
+  function toggleAlarm(id) { const a = alarms.find(x => x.id === id); if(a) { a.active = !a.active; localStorage.setItem('bestie_alarms_v22', JSON.stringify(alarms)); renderAlarms(); updateBadges(); } } 
+  function delAlarm(id)    { alarms = alarms.filter(a => a.id !== id); localStorage.setItem('bestie_alarms_v22', JSON.stringify(alarms)); renderAlarms(); updateBadges(); } 
+  function openEditAlarm(id) {
+    const a = alarms.find(x => x.id === id); if(!a) return;
+    currentEditAlarmId = id;
+    document.getElementById('editAlarmTimeInput').value = a.time;
+    document.getElementById('editAlarmLabelInput').value = a.label;
+    document.querySelectorAll('#editDaysGrid .day-btn').forEach(btn => { btn.classList.toggle('on', a.days && a.days.includes(btn.dataset.d)); });
+    document.getElementById('editAlarmModal').classList.add('show');
+  }
+  function saveEditedAlarm() {
+    const a = alarms.find(x => x.id === currentEditAlarmId);
+    if(a) { a.time = document.getElementById('editAlarmTimeInput').value; a.label = document.getElementById('editAlarmLabelInput').value; a.days = [...document.querySelectorAll('#editDaysGrid .day-btn.on')].map(b => b.dataset.d); localStorage.setItem('bestie_alarms_v22', JSON.stringify(alarms)); renderAlarms(); updateBadges(); } 
+    closeModals();
+  }
+
+  function addTodo() {
+    const text = document.getElementById('todoInput').value; if(!text) return;
+    todos.push({ id: Date.now(), text, done: false });
+    localStorage.setItem('bestie_todos_v22', JSON.stringify(todos));
+    document.getElementById('todoInput').value = ''; renderTodos();
+  }
+  function handleTodoEnter(e) { if (e.key === 'Enter') addTodo(); }
+
+  function renderTodos() {
+    const list = document.getElementById('todoList');
+    if (!todos.length) { list.innerHTML = `<p style="text-align:center; opacity:0.8; font-weight:700; padding:10px; color:var(--text-dark);">Yay! All caught up 🎉</p>`; renderAppleEmoji(); }
+    else {
+      const sorted = [...todos.filter(t => !t.done), ...todos.filter(t => t.done)];
+      list.innerHTML = sorted.map(t => `
+        <div class="todo-item ${t.done ? 'done' : ''}" id="task-${t.id}" onclick="toggleTodo(${t.id})">
+          <div class="chk-box"></div>
+          <span class="todo-text">${t.text}</span>
+          <div class="action-group">
+            <button class="btn-action btn-edit" onclick="event.stopPropagation(); openEditTodo(${t.id})">✏️</button>
+            <button class="btn-action btn-del"  onclick="event.stopPropagation(); delTodo(${t.id})">✖</button>
+          </div>
+        </div>`).join('');
+    }
+    
+    const total = todos.length, done = todos.filter(t => t.done).length;
+    const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+    
+    document.getElementById('todo-progress-fill').style.width = pct + '%';
+    
+    const iconEl = document.getElementById('todo-progress-icon');
+    if(iconEl) iconEl.style.left = pct + '%';
+    
+    document.getElementById('todo-progress-text').innerText  = pct === 100 && total > 0 ? "DONE!" : pct + '%';
+    renderAppleEmoji();
+  }
+
+  function toggleTodo(id) {
+    const el = document.getElementById(`task-${id}`);
+    if (el) {
+      el.classList.add('hide');
+      setTimeout(() => {
+        const t = todos.find(x => x.id === id);
+        if(t) t.done = !t.done;
+        localStorage.setItem('bestie_todos_v22', JSON.stringify(todos));
+        renderTodos();
+      }, 300);
+    }
+  }
+  function delTodo(id)    { todos = todos.filter(t => t.id !== id); localStorage.setItem('bestie_todos_v22', JSON.stringify(todos)); renderTodos(); }
+  function openEditTodo(id) { const t = todos.find(x => x.id === id); if(!t) return; currentEditTodoId = id; document.getElementById('editTodoInput').value = t.text; document.getElementById('editTodoModal').classList.add('show'); }
+  function saveEditedTodo() { const t = todos.find(x => x.id === currentEditTodoId); if(t) { t.text = document.getElementById('editTodoInput').value; localStorage.setItem('bestie_todos_v22', JSON.stringify(todos)); renderTodos(); } closeModals(); }
+
+  function openAddNoteModal() { document.getElementById('noteInput').value = ''; document.getElementById('addNoteModal').classList.add('show'); }
+  function saveNote() {
+    const text = document.getElementById('noteInput').value; if(!text) return;
+    const colors = ['var(--grad-btn-blue)','var(--grad-btn-lime)','var(--grad-btn-pink)','var(--grad-btn-yellow)'];
+    stickyNotes.push({ id: Date.now(), text, x: Math.max(20, Math.random() * (window.innerWidth - 260)), y: Math.max(20, Math.random() * (window.innerHeight - 250)), status: 'open', color: colors[Math.floor(Math.random()*colors.length)], angle: Math.floor(Math.random() * 5) - 2 });
+    localStorage.setItem('bestie_stickynotes_v22', JSON.stringify(stickyNotes)); renderNotes(); closeModals();
+  }
+  function closeNote(id)  { const n = stickyNotes.find(x => x.id === id); if(n) { n.status = 'closed'; localStorage.setItem('bestie_stickynotes_v22', JSON.stringify(stickyNotes)); renderNotes(); } }
+  function openNote(id)   { const n = stickyNotes.find(x => x.id === id); if(n) { n.status = 'open';   localStorage.setItem('bestie_stickynotes_v22', JSON.stringify(stickyNotes)); renderNotes(); } }
+  function permDelNote(id){ stickyNotes = stickyNotes.filter(n => n.id !== id); localStorage.setItem('bestie_stickynotes_v22', JSON.stringify(stickyNotes)); renderNotes(); }
+  function openEditNoteModal(id) { const n = stickyNotes.find(x => x.id === id); if(!n) return; currentEditNoteId = id; document.getElementById('editNoteInput').value = n.text; document.getElementById('editNoteModal').classList.add('show'); }
+  function saveEditedNote() { const n = stickyNotes.find(x => x.id === currentEditNoteId); if(n) { n.text = document.getElementById('editNoteInput').value; localStorage.setItem('bestie_stickynotes_v22', JSON.stringify(stickyNotes)); renderNotes(); } closeModals(); }
+
+  function renderNotes() {
+    const area = document.getElementById('scrapbook-area'); area.innerHTML = '';
+    const closedList = document.getElementById('closedNotesList'); closedList.innerHTML = '';
+    let hasClosedNotes = false;
+    stickyNotes.forEach(n => {
+      if (!n.status) n.status = 'open';
+      if (n.status === 'closed') {
+        hasClosedNotes = true;
+        const div = document.createElement('div'); div.className = 'todo-item glass-panel'; div.style.marginBottom = '12px';
+        div.innerHTML = `<span class="todo-text" style="font-size:0.85rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${n.text}</span><div class="action-group" style="margin-left:10px;"><button class="btn-action" style="background:var(--grad-btn-blue);" onclick="openNote(${n.id})" title="Pin again">📌</button><button class="btn-action btn-del" onclick="permDelNote(${n.id})" title="Delete permanently">✖</button></div>`;
+        closedList.appendChild(div);
+      } else {
+        const div = document.createElement('div'); div.className = 'sticky-note';
+        div.style.left = n.x + 'px'; div.style.top = n.y + 'px'; div.style.background = n.color; div.style.transform = `rotate(${n.angle}deg)`;
+        div.innerHTML = `<div class="pin"></div><div class="note-actions"><button class="btn-note-action btn-edit-note" onclick="openEditNoteModal(${n.id})">✏️</button><button class="btn-note-action btn-del-note" onclick="closeNote(${n.id})">✖</button></div><div style="font-family:inherit;font-weight:600; color:#1a1a1a;">${n.text}</div>`;
+        area.appendChild(div); makeDraggable(div, n);
+      }
+    });
+    document.getElementById('closedNotesContainer').style.display = hasClosedNotes ? 'block' : 'none';
+    renderAppleEmoji(); 
+  }
+
+  let zIndexCounter = 50;
+  function makeDraggable(elm, data) {
+    let p1=0,p2=0,p3=0,p4=0;
+    elm.onmousedown = (e) => { if(e.target.tagName==='BUTTON'||e.target.classList.contains('btn-note-action'))return; e.preventDefault(); zIndexCounter++; elm.style.zIndex=zIndexCounter; p3=e.clientX; p4=e.clientY; document.onmousemove=(e)=>{p1=p3-e.clientX;p2=p4-e.clientY;p3=e.clientX;p4=e.clientY;elm.style.top=(elm.offsetTop-p2)+"px";elm.style.left=(elm.offsetLeft-p1)+"px";}; document.onmouseup=()=>{document.onmousemove=null;document.onmouseup=null;data.x=elm.offsetLeft;data.y=elm.offsetTop;localStorage.setItem('bestie_stickynotes_v22',JSON.stringify(stickyNotes));}; };
+    elm.ontouchstart = (e) => { if(e.target.tagName==='BUTTON'||e.target.classList.contains('btn-note-action'))return; zIndexCounter++;elm.style.zIndex=zIndexCounter;p3=e.touches[0].clientX;p4=e.touches[0].clientY; document.ontouchmove=(e)=>{p1=p3-e.touches[0].clientX;p2=p4-e.touches[0].clientY;p3=e.touches[0].clientX;p4=e.touches[0].clientY;elm.style.top=(elm.offsetTop-p2)+"px";elm.style.left=(elm.offsetLeft-p1)+"px";}; document.ontouchend=()=>{document.ontouchmove=null;document.ontouchend=null;data.x=elm.offsetLeft;data.y=elm.offsetTop;localStorage.setItem('bestie_stickynotes_v22',JSON.stringify(stickyNotes));}; };
+  }
+
+  document.querySelectorAll('.day-btn').forEach(b => { b.onclick = () => { b.classList.toggle('on'); }; });
+
+  const leftCol  = document.getElementById('left-col');
+  const rightCol = document.getElementById('right-col');
+  const savedLayout = safeGetStorage('bestie_layout_v1', null);
+  if (savedLayout) {
+    savedLayout.left.forEach(id  => { const el = document.getElementById(id); if(el) leftCol.appendChild(el); });
+    savedLayout.right.forEach(id => { const el = document.getElementById(id); if(el) rightCol.appendChild(el); });
+  }
+  function saveLayout() {
+    const left  = Array.from(leftCol.children).map(el => el.id).filter(Boolean);
+    const right = Array.from(rightCol.children).map(el => el.id).filter(Boolean);
+    localStorage.setItem('bestie_layout_v1', JSON.stringify({ left, right }));
+  }
+  const sortableOptions = { group: 'shared', animation: 150, ghostClass: 'sortable-ghost', dragClass: 'sortable-drag', filter: 'input, textarea, button, select, .cookie-btn, .giant-heart-wrapper', preventOnFilter: false, onEnd: saveLayout };
+  new Sortable(leftCol,  sortableOptions);
+  new Sortable(rightCol, sortableOptions);
+
+  // INIT
+  updateBackground(new Date().getHours());
+  renderAlarms(); updateBadges();
+  renderTodos();
+  renderNotes();
+  
+  // PARSE SEMUA EMOJI DI LAYAR JADI APPLE EMOJI PAS PERTAMA KALI LOAD
+  window.onload = () => {
+    renderAppleEmoji();
+  };
+</script>
+</body>
+</html>
