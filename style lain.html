@@ -64,10 +64,6 @@
 
   img.emoji { height: 1.2em; width: 1.2em; margin: 0 .05em 0 .1em; vertical-align: -0.2em; pointer-events: none; filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.15)); }
 
-<<<<<<< HEAD
-  /* Tombol Theme & Mode Malam Hijau */
-=======
->>>>>>> a0a4f333b50866fc3cd4b75b58417365f5bfeb8c
   .theme-toggle-btn { position: fixed; top: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: var(--grad-btn-yellow); border: 2px solid var(--border-color); box-shadow: var(--glossy-inset); font-size: 1.2rem; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 999; transition: transform 0.1s ease, background 0.5s ease; }
   .theme-toggle-btn:active { transform: scale(0.9); }
   body.dark-mode .theme-toggle-btn { background: var(--grad-btn-lime) !important; color: #1a1a1a !important; }
@@ -113,11 +109,7 @@
   .glass-panel, .giant-heart-bwrap, header { transition: all 1.5s cubic-bezier(0.22, 1, 0.36, 1); }
   body.focus-mode-active { overflow: hidden; }
   
-<<<<<<< HEAD
-  /* FIX FOCUS MODE LAYOUT & SMOOTH SHIFT (Dinamis naik turun pas playlist dibuka) */
-=======
   /* FIX FOCUS MODE LAYOUT & SMOOTH SHIFT */
->>>>>>> a0a4f333b50866fc3cd4b75b58417365f5bfeb8c
   body.focus-mode-active #panel-mini-tools { position: fixed !important; top: calc(50% - 130px) !important; left: 50% !important; transform: translate(-50%, -50%) scale(1.1) !important; z-index: 9999 !important; width: min(340px, 85vw) !important; margin: 0 !important; display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; background: var(--grad-panel) !important; }
   body.focus-mode-active #panel-music { position: fixed !important; top: calc(50% + 120px) !important; left: 50% !important; transform: translate(-50%, -50%) scale(1.1) !important; z-index: 9998 !important; width: min(340px, 85vw) !important; margin: 0 !important; background: var(--grad-panel) !important; }
   
@@ -212,15 +204,9 @@
   .cookie-info { font-size: 0.85rem; font-weight: 700; color: var(--text-dark); margin-top: 5px; text-transform: uppercase; opacity: 0.6; } 
   @keyframes shakeCookie { 0%, 100% { transform: rotate(0deg); } 25%, 75% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
 
-<<<<<<< HEAD
-  /* FIX PADDING QUOTES: Margin bottom dikembalikan biar ga dempet TASKS */
-  .last-fortune-box { background: var(--input-fill); border: 2px dashed var(--border-color); border-radius: 16px; padding: 20px; text-align: center; margin-bottom: 20px; box-shadow: var(--glossy-inset); }
-  .last-fortune-text { font-size: 0.95rem; font-weight: 600; font-style: italic; color: var(--text-dark); opacity: 0.85; line-height: 1.5; margin: 0; }
-=======
   /* FIX: KOTAK FORTUNE PISAH RUMAH (Padding Rata Tengah 100% Aman) */
   .last-fortune-box { background: var(--input-fill); border: 2px dashed var(--border-color); border-radius: 16px; padding: 20px; text-align: center; margin: 0; box-shadow: var(--glossy-inset); }
   .last-fortune-text { font-size: 0.95rem; font-weight: 600; font-style: italic; color: var(--text-dark); opacity: 0.85; line-height: 1.5; margin: 0; }  
->>>>>>> a0a4f333b50866fc3cd4b75b58417365f5bfeb8c
 
   /* MUSIC */
   .music-player { padding: 20px 20px; display: flex; flex-direction: column; gap: 12px; transition: height 0.3s ease; } 
@@ -415,11 +401,7 @@
   </div>
 
   <div class="right-column" id="right-col">
-<<<<<<< HEAD
-    <div class="giant-heart-bwrap glass-panel sortable-panel" id="panel-heart" style="cursor: grab;">
-=======
     <div class="giant-heart-bwrap sortable-panel" id="panel-heart">
->>>>>>> a0a4f333b50866fc3cd4b75b58417365f5bfeb8c
       <div class="giant-heart-wrapper" onclick="openAddNoteModal()">
         <svg viewBox="0 0 32 29.6" class="giant-heart-svg">
           <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
@@ -447,13 +429,6 @@
       </div>
     </div>
 
-<<<<<<< HEAD
-    <div class="container glass-panel sortable-panel" id="panel-todo">
-      <div class="last-fortune-box">
-        <p id="lastFortuneText" class="last-fortune-text">Crack a cookie to reveal your fortune! ✨</p>
-      </div>
-
-=======
     <div class="container glass-panel sortable-panel" id="panel-last-fortune">
       <div class="last-fortune-box">
         <p id="lastFortuneText" class="last-fortune-text">Crack a cookie to reveal your fortune! ✨</p>
@@ -461,7 +436,6 @@
     </div>
 
     <div class="container glass-panel sortable-panel" id="panel-todo">
->>>>>>> a0a4f333b50866fc3cd4b75b58417365f5bfeb8c
       <div class="todo-header">📝 TASKS</div>
       <div class="form-box" style="margin-bottom: 15px; border:none; background:transparent; padding:0;">
         <div class="input-group">
@@ -550,6 +524,7 @@
     }
   }
 
+  // GLOBAL STATE — harus di atas semua fungsi
   let playlistOpen = false;
 
   function safeGetStorage(key, defaultVal) {
@@ -625,13 +600,10 @@
     document.getElementById('m-artist').innerText = playlist[index].artist;
     renderAppleEmoji();
     if (isPlaying) audioEl.play().catch(e => console.log(e));
-    if (playlistOpen) renderPlaylistItems(); 
+    if (playlistOpen) renderPlaylistItems(); // refresh highlight
   }
   
-<<<<<<< HEAD
-=======
   // FIX: PLAYBACK MODES JADI FULL SOLID (SAMA KAYAK PLAY/VOLUME)
->>>>>>> a0a4f333b50866fc3cd4b75b58417365f5bfeb8c
   const MODES = [
     {
       key: 'repeat-all',
@@ -663,16 +635,19 @@
   function nextSong() {
     const mode = MODES[playModeIndex].key;
     if (mode === 'repeat-one') {
+      // restart lagu yang sama
       audioEl.currentTime = 0;
       if (isPlaying) audioEl.play().catch(e => console.log(e));
       return;
     }
     if (mode === 'shuffle') {
+      // pilih random, hindari lagu yang sama
       let r;
       do { r = Math.floor(Math.random() * playlist.length); }
       while (r === currentSongIndex && playlist.length > 1);
       currentSongIndex = r;
     } else {
+      // repeat-all: maju ke lagu berikutnya, wrap ke 0
       currentSongIndex = (currentSongIndex + 1) % playlist.length;
     }
     loadSong(currentSongIndex);
@@ -681,6 +656,7 @@
   function prevSong() {
     const mode = MODES[playModeIndex].key;
     if (mode === 'shuffle') {
+      // prev saat shuffle = random juga
       let r;
       do { r = Math.floor(Math.random() * playlist.length); }
       while (r === currentSongIndex && playlist.length > 1);
@@ -729,12 +705,9 @@
     }
   });
 
-<<<<<<< HEAD
-=======
   // ============================================================
   // PLAYLIST DROPDOWN
   // ============================================================
->>>>>>> a0a4f333b50866fc3cd4b75b58417365f5bfeb8c
   function togglePlaylist(e) {
     if(e) e.stopPropagation();
     playlistOpen = !playlistOpen;
@@ -1158,13 +1131,8 @@
 
   document.querySelectorAll('.day-btn').forEach(b => { b.onclick = () => { b.classList.toggle('on'); }; });
 
-<<<<<<< HEAD
-  const leftColEl  = document.getElementById('left-col');
-  const rightColEl = document.getElementById('right-col');
-=======
   const rightColEl = document.getElementById('right-col');
   const leftColEl = document.getElementById('left-col');
->>>>>>> a0a4f333b50866fc3cd4b75b58417365f5bfeb8c
   const savedLayout = safeGetStorage('bestie_layout_v1', null);
   if (savedLayout) {
     savedLayout.left.forEach(id  => { const el = document.getElementById(id); if(el) leftColEl.appendChild(el); });
