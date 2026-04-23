@@ -54,7 +54,6 @@
   ::-webkit-scrollbar-track { background: transparent; border-left: 2px solid var(--border-color); } 
   ::-webkit-scrollbar-thumb { background: var(--text-dark); border-radius: 10px; } 
   
-  
   html, body { 
   min-height: 100vh; 
   overflow-x: auto; /* INI YANG BIKIN SCROLL BAWAH BALIK LAGI 💅 */
@@ -117,10 +116,13 @@
   body.focus-mode-active #panel-mini-tools { position: fixed !important; top: calc(50% - 130px) !important; left: 50% !important; transform: translate(-50%, -50%) scale(1.1) !important; z-index: 9999 !important; width: min(340px, 85vw) !important; margin: 0 !important; display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; background: var(--grad-panel) !important; }
   body.focus-mode-active #panel-music { position: fixed !important; top: calc(50% + 120px) !important; left: 50% !important; transform: translate(-50%, -50%) scale(1.1) !important; z-index: 9998 !important; width: min(340px, 85vw) !important; margin: 0 !important; background: var(--grad-panel) !important; }
   
-  /* Efek Mulus Pas Playlist Terbuka di Focus Mode (Panel Fokus geser ke atas) */
-  body.focus-mode-active.playlist-open #panel-mini-tools { top: calc(50% - 190px) !important; }
-  body.focus-mode-active.playlist-open #panel-music { top: calc(50% + 150px) !important; }
-
+/* FIX: Spacing Focus Mode saat Playlist Terbuka ✨ */
+  body.focus-mode-active.playlist-open #panel-mini-tools { 
+    top: calc(50% - 210px) !important; /* Dorong dikit lagi ke atas biar lega */
+  }
+  body.focus-mode-active.playlist-open #panel-music { 
+    top: calc(50% + 100px) !important; /* Jangan terlalu ke bawah, biar proporsional */
+  }
   body.focus-mode-active .fortune-cookie-container, body.focus-mode-active .panel-divider { display: none !important; }
 
   /* KOTAK JAM (PIXEL - NO SPACES) */
