@@ -69,8 +69,19 @@
 
   .theme-toggle-btn { position: fixed; top: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: var(--grad-btn-yellow); border: 2px solid var(--border-color); box-shadow: var(--glossy-inset); font-size: 1.2rem; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 999; transition: transform 0.1s ease, background 0.5s ease; }
   .theme-toggle-btn:active { transform: scale(0.9); }
-  body.dark-mode .theme-toggle-btn { background: var(--grad-btn-lime) !important; color: #1a1a1a !important; }
-
+  /* Bikin emoji Bulan punya stroke buatan di Night Mode biar match sama Matahari 🌙💅 */
+  body.dark-mode .theme-toggle-btn img.emoji {
+    filter: drop-shadow(0.8px 0.8px 0px #1a1a1a) 
+            drop-shadow(-0.8px -0.8px 0px #1a1a1a) 
+            drop-shadow(0.8px -0.8px 0px #1a1a1a) 
+            drop-shadow(-0.8px 0.8px 0px #1a1a1a) !important;
+  }
+/* Tombol Bulan Sabit pakai warna Hijau Neon Phoning Pelek 💅 */
+  body.dark-mode .theme-toggle-btn { 
+  background: var(--grad-btn-lime) !important; 
+  color: #1a1a1a !important; 
+  border: 2px solid #1a1a1a !important; /* Nah, ini wajib ada biar bulannya tetep punya stroke hitam tegas 💅 */
+}
   .layout-wrapper { display: flex; gap: 35px; flex-wrap: wrap; justify-content: center; align-items: flex-start; width: 100%; max-width: 900px; margin: 0 auto; position: relative; z-index: 10; }
   .left-column, .right-column { display: flex; flex-direction: column; gap: 20px; align-items: center; width: 100%; max-width: 400px; min-height: 200px; }
 
