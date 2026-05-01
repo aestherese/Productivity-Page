@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CALLA'S PAGE ✨</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lexend:wght@500;600;700;800;900&family=Press+Start+2P&family=Space+Mono&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 <style>
@@ -67,8 +67,7 @@
   body.dark-mode .theme-toggle-btn { background: var(--grad-btn-lime) !important; color: #1a1a1a !important; border: 2px solid #1a1a1a !important; }
 
   .layout-wrapper { display: flex; gap: 35px; flex-wrap: wrap; justify-content: center; align-items: flex-start; width: 100%; max-width: 900px; margin: 0 auto; position: relative; z-index: 10; }
-  .left-column-wrapper { display: flex; flex-direction: column; gap: 20px; align-items: center; width: 100%; max-width: 400px; }
-  .left-column, .right-column { display: flex; flex-direction: column; gap: 20px; align-items: center; width: 100%; max-width: 400px; min-height: 200px; }
+  .left-column, .right-column { display: flex; flex-direction: column; gap: 20px; align-items: center; width: 400px; max-width: 100%; min-height: 200px; }
 
   .glass-panel { background: var(--grad-panel) !important; border: 2px solid var(--border-color) !important; border-radius: 28px; cursor: grab; width: 100%; transition: transform 0.1s ease; box-shadow: none !important; }
   .glass-panel:active { cursor: grabbing; transform: scale(0.99); }
@@ -80,7 +79,7 @@
   /* ================================== */
   /* ID CARD (FIX ANTI-TEMBUS & RAPI) 🌸 */
   /* ================================== */
-  .top-profile-section { text-align: center; margin-bottom: 5px; width: 100%; }
+  .top-profile-section { text-align: center; margin-bottom: 25px; width: 100%; }
   .page-title { font-family: inherit; font-size: 1.2rem; font-weight: 800; color: var(--text-dark); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; text-shadow: none; }
   
   .id-card-container { perspective: 1000px; width: 100%; max-width: 340px; height: 190px; margin: 0 auto; }
@@ -97,7 +96,6 @@
     backface-visibility: hidden; -webkit-backface-visibility: hidden; 
   }
   
-  /* FIX CARD TRANSPARANT: pakai 'background:' bukan 'background-color:' biar gradient-nya kebaca */
   .id-card-front { 
     background: var(--grad-btn-pink) !important; 
     transform: rotateY(0deg); z-index: 2;
@@ -110,7 +108,7 @@
 
   .id-photo { 
     position: absolute; top: 18px; left: 20px; width: 105px; height: 148px; 
-    background: transparent; border: none; border-radius: 12px; overflow: hidden; 
+    background: transparent; border: 2px solid rgba(26,26,26,1); border-radius: 12px; overflow: hidden;
   }
   .photo-fade { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; animation-duration: 10s; animation-iteration-count: infinite; animation-timing-function: ease-in-out; }
   .fade-1 { animation-name: fadeAnimation1; }
@@ -127,6 +125,10 @@
   .editable-group { position: relative; cursor: pointer; margin-bottom: 5px; padding-bottom: 2px; }
   .editable-group:active { opacity: 0.6; }
   .editable-group .id-value, .id-details .id-value { font-family: 'Lexend', sans-serif; font-weight: 800; font-size: 14px; color: #1a1a1a !important; margin-bottom: 2px; outline: none; flex: 1; pointer-events: none; line-height: 1.2;}
+  #randomMemberId { font-family: 'Space Mono', monospace !important; font-weight: 700 !important; font-size: 10px !important; color: #1a1a1a !important; opacity: 0.85; letter-spacing: 0.8px; margin-top: 1px !important; line-height: 1.4; }
+  .id-label { font-size: 8px; font-weight: 800; color: rgba(26,26,26,0.55); letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 1px; }
+  .editable-group { position: relative; display: flex; align-items: flex-start; gap: 0; padding: 0; margin: 0 0 4px 0; border-radius: 5px; transition: opacity 0.2s; }
+  .id-details { flex: 1; text-align: left; display: flex; flex-direction: column; gap: 1px; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
   .bio-text { font-size: 10px !important; font-weight: 600 !important; line-height: 1.2; max-height: 45px; overflow: hidden; }
   
   .back-inner { 
@@ -188,6 +190,11 @@
   label { font-size: 0.75rem; font-weight: 700; color: var(--text-dark); text-transform: uppercase; opacity: 0.7; letter-spacing: 0.5px; }
   .unified-time-picker { display: flex; align-items: center; justify-content: center; background: var(--input-fill); border: 2px solid var(--border-color); border-radius: 12px; padding: 5px; height: 44px; } 
   select.time-select { appearance: none; font-family: 'Press Start 2P', cursive; font-size: 0.85rem; color: var(--text-dark); background: transparent; border: none; outline: none; cursor: pointer; height: 100%; display: flex; align-items: center; }
+  
+  /* FIX: Option Dropdown Background di Dark Mode Biar Gak Nyaru! */
+  option { background-color: #ffffff; color: #1a1a1a; font-family: 'Inter', sans-serif; font-weight: 600; }
+  body.dark-mode option { background-color: #1c1d29; color: #e8eaef; }
+  
   input[type="text"], input[type="number"], input[type="time"], textarea { appearance: none; font-family: inherit; font-size: 1rem; font-weight: 600; border: 2px solid var(--border-color); border-radius: 12px; background: var(--input-fill); outline: none; width: 100%; color: var(--text-dark); transition: 0.2s; } 
   input[type="text"], input[type="number"], input[type="time"] { height: 44px; padding: 0 12px; } textarea { padding: 12px; }
   input[type="text"]:focus, input[type="number"]:focus, input[type="time"]:focus, textarea:focus { border-color: #7acff0; }
@@ -372,119 +379,120 @@
 
 <div class="layout-wrapper">
   
-  <div class="left-column-wrapper">
-    
-    <div class="top-profile-section" id="panel-profile">
-      <h2 class="page-title">CALLA'S PAGE ✨</h2>
-      <div class="id-card-container">
-        <div class="id-card" id="myIdCard">
-          
-          <div class="id-card-front">
-            <div class="id-photo">
-              <img src="calla1.png" class="photo-fade fade-1" alt="Profile 1">
-              <img src="calla2.png" class="photo-fade fade-2" alt="Profile 2">
-            </div>
-            <div class="id-details">
-              <div class="id-label">NAME</div>
-              <div class="editable-group" onclick="openEditProfileModal()" title="Click to edit">
-                <div class="id-value" id="profileNameDisplay">Calla</div>
+  <div class="left-column" id="left-col">
+    <div class="container glass-panel sortable-panel" id="panel-alarm">
+      
+      <!-- BALIK KE SINI BEB: ID Card masuk lagi ke dalam kotak panel alarm! -->
+      <div class="top-profile-section" id="panel-profile">
+        <h2 class="page-title">CALLA'S PAGE ✨</h2>
+        <div class="id-card-container">
+          <div class="id-card" id="myIdCard">
+            
+            <div class="id-card-front">
+              <div class="id-photo">
+                <img src="calla1.png" class="photo-fade fade-1" alt="Profile 1">
+                <img src="calla2.png" class="photo-fade fade-2" alt="Profile 2">
               </div>
-              
-              <div class="id-label">BIO</div>
-              <div class="editable-group" onclick="openEditProfileModal()" title="Click to edit">
-                <div class="id-value bio-text" id="profileBioDisplay">rise and shine 🌼<br>98-liner designer who loves Ghibli vibes and Y2K aesthetic.</div>
+              <div class="id-details">
+                <div class="id-label">NAME</div>
+                <div class="editable-group" onclick="openEditProfileModal()" title="Click to edit">
+                  <div class="id-value" id="profileNameDisplay">Calla</div>
+                </div>
+                
+                <div class="id-label">BIO</div>
+                <div class="editable-group" onclick="openEditProfileModal()" title="Click to edit">
+                  <div class="id-value bio-text" id="profileBioDisplay">rise and shine 🌼<br>98-liner designer who loves Ghibli vibes and Y2K aesthetic.</div>
+                </div>
+                
+                <div class="id-label">MEMBER ID</div>
+                <div class="id-value" id="randomMemberId">#ID-980000</div>
               </div>
-              
-              <div class="id-label">MEMBER ID</div>
-              <div class="id-value" id="randomMemberId" style="margin-top: 4px;">#ID-980000</div>
+              <button class="flip-btn" onclick="flipCard()" title="Flip Card">
+                <svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+              </button>
             </div>
-            <button class="flip-btn" onclick="flipCard()" title="Flip Card">
-              <svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
-            </button>
-          </div>
-          
-          <div class="id-card-back">
-            <div class="back-inner">
-              <div class="barcode">|| |||| ||| | |||| | ||</div>
-              <p id="idCardFortuneText" style="font-size: 0.85rem; font-style: italic; opacity: 0.9; margin-top: 5px; color: #1a1a1a !important;">Crack a cookie to reveal your fortune! ✨</p>
+            
+            <div class="id-card-back">
+              <div class="back-inner">
+                <div class="barcode">|| |||| ||| | |||| | ||</div>
+                <p id="idCardFortuneText" style="font-size: 0.85rem; font-style: italic; opacity: 0.9; margin-top: 5px; color: #1a1a1a !important;">Crack a cookie to reveal your fortune! ✨</p>
+              </div>
+              <button class="flip-btn" onclick="flipCard()" title="Flip Card">
+                <svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+              </button>
             </div>
-            <button class="flip-btn" onclick="flipCard()" title="Flip Card">
-              <svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
-            </button>
+            
           </div>
-          
+        </div>
+      </div>
+      <!-- END ID CARD -->
+
+      <div class="clock-box">
+        <div id="live-date">MON, 20 APR</div>
+        <div id="live-clock">00:00:00</div>
+        <span id="snoozeBadge" class="badge snooze" style="display:none;">Snooze 5m 😴</span>
+      </div>
+      <div class="form-box">
+        <div class="input-row">
+          <div class="input-group time">
+            <label>TIME</label>
+            <div class="unified-time-picker">
+              <select id="hourSelect" class="time-select"></select>
+              <span style="font-family: inherit; font-weight:800; color:var(--text-dark)">:</span>
+              <select id="minSelect" class="time-select"></select>
+            </div>
+          </div>
+          <div class="input-group msg">
+            <label>MESSAGE</label>
+            <input type="text" id="labelInput" name="alarmMessage" autocomplete="off" placeholder="Wake up!...">
+          </div>
+        </div>
+        <div class="days-grid" id="mainDaysGrid">
+          <button class="day-btn" data-d="Sun">S</button><button class="day-btn" data-d="Mon">M</button><button class="day-btn" data-d="Tue">T</button><button class="day-btn" data-d="Wed">W</button><button class="day-btn" data-d="Thu">T</button><button class="day-btn" data-d="Fri">F</button><button class="day-btn" data-d="Sat">S</button>
+        </div>
+        <button class="btn-pixel" onclick="saveAlarm()">+ ADD ALARM</button>
+      </div>
+      <h2 class="section-title">Active Alarms 🌸 <span id="activeAlarmBadge" class="badge" style="display:none;">0 Active</span></h2>
+      <div id="alarmList"></div>
+    </div>
+
+    <div class="container glass-panel music-player sortable-panel" id="panel-music">
+      <audio id="bg-audio"></audio>
+      <div class="music-info-row" id="music-info-row" onclick="togglePlaylist(event)">
+        <div class="vinyl-record" id="vinyl-disc"><div class="vinyl-center"></div></div>
+        <div class="song-details">
+          <div class="song-title" id="m-title">Loading...</div>
+          <div class="song-artist" id="m-artist">...</div>
+        </div>
+        <div class="playlist-arrow" id="playlist-arrow">▼</div>
+      </div>
+      <div id="playlist-dropdown">
+        <div id="playlist-items"></div>
+      </div>
+      <div class="progress-bar-container" id="progress-container" onclick="seekMusic(event)">
+        <div class="progress-fill" id="progress-fill"></div>
+        <div class="progress-dot" id="progress-dot"></div>
+      </div>
+      <div class="music-controls">
+        <button class="control-btn mode-btn active" id="mode-btn" onclick="cyclePlayMode()" title="Repeat All">
+          <svg id="mode-icon" viewBox="0 0 24 24"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/>
+        </svg>
+      </button>
+      <button class="control-btn" onclick="prevSong()"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
+      <button class="control-btn play" id="play-btn" onclick="toggleMusic()">
+        <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <svg id="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+      </button>
+      <button class="control-btn" onclick="nextSong()"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
+      <div class="volume-wrapper">
+        <button class="control-btn" id="vol-btn" onclick="toggleVolDropdown(event)"><svg id="vol-icon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>
+        <div class="volume-dropdown" id="vol-dropdown-box" onclick="event.stopPropagation()">
+          <input type="range" class="vol-slider" id="vol-slider" min="0" max="1" step="0.05" value="0.5" oninput="changeVolume()">
         </div>
       </div>
     </div>
-
-    <div class="left-column" id="left-col">
-      <div class="container glass-panel sortable-panel" id="panel-alarm">
-        <div class="clock-box">
-          <div id="live-date">MON, 20 APR</div>
-          <div id="live-clock">00:00:00</div>
-          <span id="snoozeBadge" class="badge snooze" style="display:none;">Snooze 5m 😴</span>
-        </div>
-        <div class="form-box">
-          <div class="input-row">
-            <div class="input-group time">
-              <label>TIME</label>
-              <div class="unified-time-picker">
-                <select id="hourSelect" class="time-select"></select>
-                <span style="font-family: inherit; font-weight:800; color:var(--text-dark)">:</span>
-                <select id="minSelect" class="time-select"></select>
-              </div>
-            </div>
-            <div class="input-group msg">
-              <label>MESSAGE</label>
-              <input type="text" id="labelInput" name="alarmMessage" autocomplete="off" placeholder="Wake up!...">
-            </div>
-          </div>
-          <div class="days-grid" id="mainDaysGrid">
-            <button class="day-btn" data-d="Sun">S</button><button class="day-btn" data-d="Mon">M</button><button class="day-btn" data-d="Tue">T</button><button class="day-btn" data-d="Wed">W</button><button class="day-btn" data-d="Thu">T</button><button class="day-btn" data-d="Fri">F</button><button class="day-btn" data-d="Sat">S</button>
-          </div>
-          <button class="btn-pixel" onclick="saveAlarm()">+ ADD ALARM</button>
-        </div>
-        <h2 class="section-title">Active Alarms 🌸 <span id="activeAlarmBadge" class="badge" style="display:none;">0 Active</span></h2>
-        <div id="alarmList"></div>
-      </div>
-
-      <div class="container glass-panel music-player sortable-panel" id="panel-music">
-        <audio id="bg-audio"></audio>
-        <div class="music-info-row" id="music-info-row" onclick="togglePlaylist(event)">
-          <div class="vinyl-record" id="vinyl-disc"><div class="vinyl-center"></div></div>
-          <div class="song-details">
-            <div class="song-title" id="m-title">Loading...</div>
-            <div class="song-artist" id="m-artist">...</div>
-          </div>
-          <div class="playlist-arrow" id="playlist-arrow">▼</div>
-        </div>
-        <div id="playlist-dropdown">
-          <div id="playlist-items"></div>
-        </div>
-        <div class="progress-bar-container" id="progress-container" onclick="seekMusic(event)">
-          <div class="progress-fill" id="progress-fill"></div>
-          <div class="progress-dot" id="progress-dot"></div>
-        </div>
-        <div class="music-controls">
-          <button class="control-btn mode-btn active" id="mode-btn" onclick="cyclePlayMode()" title="Repeat All">
-            <svg id="mode-icon" viewBox="0 0 24 24"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/>
-          </svg>
-        </button>
-        <button class="control-btn" onclick="prevSong()"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
-        <button class="control-btn play" id="play-btn" onclick="toggleMusic()">
-          <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          <svg id="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-        </button>
-        <button class="control-btn" onclick="nextSong()"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
-        <div class="volume-wrapper">
-          <button class="control-btn" id="vol-btn" onclick="toggleVolDropdown(event)"><svg id="vol-icon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>
-          <div class="volume-dropdown" id="vol-dropdown-box" onclick="event.stopPropagation()">
-            <input type="range" class="vol-slider" id="vol-slider" min="0" max="1" step="0.05" value="0.5" oninput="changeVolume()">
-          </div>
-        </div>
-      </div>
-    </div> 
   </div> 
+</div> 
 
   <div class="right-column" id="right-col">
     <div class="giant-heart-bwrap sortable-panel" id="panel-heart">
@@ -692,9 +700,6 @@
 </div></div>
 
 <script>
-  // =======================================
-  // SHIELD ANTI-CRASH APPLE EMOJI 🛡️
-  // =======================================
   function renderAppleEmoji() {
     try {
       if (typeof twemoji !== 'undefined') {
@@ -717,9 +722,6 @@
     }
   }
 
-  // =======================================
-  // PENYIMPANAN PROFIL NAMA & BIO 🌸
-  // =======================================
   let profileData = safeGetStorage('phoning_profile_v1', {
     name: "Calla",
     bio: "rise and shine 🌼\n98-liner designer who loves Ghibli vibes and Y2K aesthetic."
@@ -751,9 +753,6 @@
     closeModals();
   }
 
-  // =======================================
-  // SIHIR RANDOM ID (Barcode Depan Dihapus Biar Clean) 🪄
-  // =======================================
   function generateRandomID() {
     try {
       const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -1365,22 +1364,28 @@
   
   function saveLayout() {
     if(!leftColEl || !rightColEl) return;
-    const left  = Array.from(leftColEl.children).map(el => el.id).filter(Boolean);
-    const right = Array.from(rightColEl.children).map(el => el.id).filter(Boolean);
-    localStorage.setItem('bestie_layout_v1', JSON.stringify({ left, right }));
+    const left  = Array.from(leftColEl.children).filter(el => el.classList.contains('sortable-panel')).map(el => el.id).filter(Boolean);
+    const right = Array.from(rightColEl.children).filter(el => el.classList.contains('sortable-panel')).map(el => el.id).filter(Boolean);
+    localStorage.setItem('calla_layout_v4', JSON.stringify({ left, right }));
   }
 
   try {
-    const savedLayout = safeGetStorage('bestie_layout_v1', null);
+    const savedLayout = safeGetStorage('calla_layout_v4', null);
     if (savedLayout && savedLayout.left && savedLayout.right) {
-      savedLayout.left.forEach(id  => { const el = document.getElementById(id); if(el && leftColEl) leftColEl.appendChild(el); });
-      savedLayout.right.forEach(id => { const el = document.getElementById(id); if(el && rightColEl) rightColEl.appendChild(el); });
+      const rightValid = savedLayout.right.filter(id => document.getElementById(id));
+      const leftValid  = savedLayout.left.filter(id => document.getElementById(id));
+      if (rightValid.length > 0 && leftValid.length > 0) {
+        leftValid.forEach(id  => { const el = document.getElementById(id); if(el && leftColEl && el.classList.contains('sortable-panel')) leftColEl.appendChild(el); });
+        rightValid.forEach(id => { const el = document.getElementById(id); if(el && rightColEl && el.classList.contains('sortable-panel')) rightColEl.appendChild(el); });
+      } else {
+        localStorage.removeItem('calla_layout_v4');
+      }
     }
-  } catch(e) { console.error("Gagal load layout lama", e); }
+  } catch(e) { console.error("Gagal load layout lama", e); localStorage.removeItem('calla_layout_v4'); }
 
   try {
     if (typeof Sortable !== 'undefined' && leftColEl && rightColEl) {
-      const sortableOptions = { group: 'shared', animation: 150, ghostClass: 'sortable-ghost', dragClass: 'sortable-drag', filter: 'input, textarea, button, select, .cookie-btn, .giant-heart-wrapper', preventOnFilter: false, onEnd: saveLayout };
+      const sortableOptions = { group: 'shared', animation: 150, ghostClass: 'sortable-ghost', dragClass: 'sortable-drag', draggable: '.sortable-panel', filter: 'input, textarea, button, select, .cookie-btn, .giant-heart-wrapper, .music-info-row, #playlist-dropdown, .progress-bar-container', preventOnFilter: false, onEnd: saveLayout };
       new Sortable(leftColEl,  sortableOptions);
       new Sortable(rightColEl, sortableOptions);
     }
@@ -1393,7 +1398,7 @@
     updateBadges();
     renderTodos();
     renderNotes();
-    renderWeekly(); // INIT WEEKLY
+    renderWeekly(); 
   } catch(e) { console.error("Gagal render fitur dinamis", e); }
   
   window.onload = () => { 
