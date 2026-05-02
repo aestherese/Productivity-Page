@@ -82,7 +82,7 @@
   .top-profile-section { text-align: center; margin-bottom: 25px; width: 100%; }
   .page-title { font-family: inherit; font-size: 1.2rem; font-weight: 800; color: var(--text-dark); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; text-shadow: none; }
   
-  .id-card-container { perspective: 1000px; width: 100%; max-width: 340px; height: 190px; margin: 0 auto; }
+  .id-card-container { perspective: 1000px; width: 100%; max-width: 100%; height: 190px; margin: 0 auto; }
   .id-card { 
     width: 100%; height: 100%; position: relative; 
     transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
@@ -126,9 +126,6 @@
   .editable-group:active { opacity: 0.6; }
   .editable-group .id-value, .id-details .id-value { font-family: 'Lexend', sans-serif; font-weight: 800; font-size: 14px; color: #1a1a1a !important; margin-bottom: 2px; outline: none; flex: 1; pointer-events: none; line-height: 1.2;}
   #randomMemberId { font-family: 'Space Mono', monospace !important; font-weight: 700 !important; font-size: 10px !important; color: #1a1a1a !important; opacity: 0.85; letter-spacing: 0.8px; margin-top: 1px !important; line-height: 1.4; }
-  .id-label { font-size: 8px; font-weight: 800; color: rgba(26,26,26,0.55); letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 1px; }
-  .editable-group { position: relative; display: flex; align-items: flex-start; gap: 0; padding: 0; margin: 0 0 4px 0; border-radius: 5px; transition: opacity 0.2s; }
-  .id-details { flex: 1; text-align: left; display: flex; flex-direction: column; gap: 1px; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
   .bio-text { font-size: 10px !important; font-weight: 600 !important; line-height: 1.2; max-height: 45px; overflow: hidden; }
   
   .back-inner { 
@@ -248,22 +245,22 @@
   .love-meter-icon img.emoji { filter: drop-shadow(0.5px 0.5px 0px #1a1a1a) drop-shadow(-0.5px -0.5px 0px #1a1a1a) drop-shadow(0.5px -0.5px 0px #1a1a1a) drop-shadow(-0.5px 0.5px 0px #1a1a1a) !important; }
   .love-meter-text { font-family: 'Press Start 2P', cursive; font-size: 0.65rem; color: var(--text-dark); width: 45px; text-align: right; } 
 
-  .split-panel { display: grid !important; grid-template-columns: 1fr 2px 1fr !important; padding: 25px !important; gap: 10px !important; align-items: center !important; justify-items: center !important; transition: height 0.3s ease; }
-  .split-panel > div { width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-  .panel-divider { width: 2px !important; height: 100px !important; background: var(--border-color) !important; border-radius: 2px !important; opacity: 0.5 !important; flex: none !important; }
-  @media (max-width: 400px) { .split-panel { grid-template-columns: 1fr; gap: 20px; } .panel-divider { width: 80%; height: 2px; } }
+  /* FIX: Split Panel biar simetris dan rapi sejajar tanpa kotak input Work (25m) */
+  .split-panel { display: grid !important; grid-template-columns: 1fr 2px 1fr !important; padding: 25px !important; gap: 10px !important; align-items: stretch !important; justify-items: center !important; transition: height 0.3s ease; }
+  .split-panel > div { width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center; height: 100%; }
+  .panel-divider { width: 2px !important; height: auto !important; align-self: stretch !important; min-height: 120px; background: var(--border-color) !important; border-radius: 2px !important; opacity: 0.5 !important; flex: none !important; margin: 0; padding: 0; }
+  @media (max-width: 400px) { .split-panel { grid-template-columns: 1fr; gap: 20px; } .panel-divider { width: 80%; height: 2px !important; min-height: 2px !important; } }
   
-  .timer-display { font-family: 'Press Start 2P', cursive; font-size: 1.4rem; color: var(--text-dark); margin: 10px 0 5px 0; cursor: pointer; transition: 0.2s; letter-spacing: 1px; }
+  .timer-display { font-family: 'Press Start 2P', cursive; font-size: 1.4rem; color: var(--text-dark); margin: 0; cursor: pointer; transition: 0.2s; letter-spacing: 1px; line-height: 1; }
   .timer-display:hover { transform: scale(1.05); }
-  .timer-hint { font-size: 0.65rem; color: var(--text-dark); margin-bottom: 10px; font-weight: 700; text-transform: uppercase; opacity: 0.6; }
-  .timer-controls { display: flex; gap: 10px; margin-bottom: 12px; align-items: center; justify-content: center; }
+  .timer-hint { font-size: 0.65rem; color: var(--text-dark); margin: 8px 0 0 0; font-weight: 700; text-transform: uppercase; opacity: 0.6; }
+  .timer-controls { display: flex; gap: 10px; align-items: center; justify-content: center; }
   .timer-controls .btn-action { width: 36px; height: 36px; border-radius: 12px; }
-  input.timer-mode { font-family: inherit; font-size: 0.8rem; font-weight: 700; color: var(--text-dark); background: var(--input-fill); padding: 8px 12px; border-radius: 12px; border: 2px solid var(--border-color); text-align: center; width: 130px; outline: none; }
 
   .fortune-cookie-container { text-align: center; padding: 0; display: flex !important; flex-direction: column !important; justify-content: center !important; } 
-  .cookie-btn { font-size: 3.5rem; cursor: pointer; transition: 0.2s; display: inline-block; user-select: none; } 
+  .cookie-btn { font-size: 3.5rem; cursor: pointer; transition: 0.2s; display: inline-block; user-select: none; margin: 0; line-height: 1; } 
   .cookie-btn:hover { animation: shakeCookie 0.5s ease-in-out infinite; } .cookie-btn:active { transform: scale(0.9); } 
-  .cookie-info { font-size: 0.85rem; font-weight: 700; color: var(--text-dark); margin-top: 5px; text-transform: uppercase; opacity: 0.6; } 
+  .cookie-info { font-size: 0.85rem; font-weight: 700; color: var(--text-dark); margin: 0; text-transform: uppercase; opacity: 0.6; } 
   @keyframes shakeCookie { 0%, 100% { transform: rotate(0deg); } 25%, 75% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
 
   .last-fortune-box { background: var(--input-fill); border: 2px dashed var(--border-color); border-radius: 16px; padding: 20px; text-align: center; margin: 0; box-shadow: var(--glossy-inset); }
@@ -365,10 +362,6 @@
   @keyframes popIn { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } } 
   @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 </style>
-
-<!-- SCRIPT BUAT PLAYLIST TERPISAH 👇 -->
-<script src="playlist.js"></script>
-
 </head>
 <body>
 
@@ -386,7 +379,6 @@
   <div class="left-column" id="left-col">
     <div class="container glass-panel sortable-panel" id="panel-alarm">
       
-      <!-- BALIK KE SINI BEB: ID Card masuk lagi ke dalam kotak panel alarm! -->
       <div class="top-profile-section" id="panel-profile">
         <h2 class="page-title">CALLA'S PAGE ✨</h2>
         <div class="id-card-container">
@@ -429,7 +421,6 @@
           </div>
         </div>
       </div>
-      <!-- END ID CARD -->
 
       <div class="clock-box">
         <div id="live-date">MON, 20 APR</div>
@@ -508,23 +499,31 @@
       </div>
     </div>
 
-    <div class="glass-panel split-panel sortable-panel" id="panel-mini-tools">
-      <div class="timer-container">
-        <h2 class="section-title" style="justify-content: center; margin-bottom: 0;">Focus 🍅</h2>
-        <div class="timer-display" id="pomodoro-time" onclick="editTimer()" title="Tap to edit minutes!">25:00</div>
-        <div class="timer-hint">Tap to edit 👆</div>
-        <div class="timer-controls">
+    <!-- FIX: Panel Focus tanpa input Work(25m), disejajarkan simetris sempurna sama Fortune -->
+    <div class="glass-panel split-panel sortable-panel" id="panel-mini-tools" style="align-items: stretch !important;">
+      
+      <div class="timer-container" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; width: 100%;">
+        <h2 class="section-title" style="justify-content: center; margin: 0 0 10px 0; min-height: 24px;">Focus 🍅</h2>
+        <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+          <div class="timer-display" id="pomodoro-time" onclick="editTimer()" title="Tap to edit minutes!" style="margin: 0; line-height: 1;">25:00</div>
+          <div class="timer-hint" style="margin: 8px 0 0 0;">Tap to edit 👆</div>
+        </div>
+        <div class="timer-controls" style="margin: 10px 0 0 0; min-height: 36px;">
           <button class="btn-action" style="background:var(--grad-btn-lime);" onclick="toggleTimer()" id="timer-btn">▶</button>
           <button class="btn-action" style="background:var(--grad-btn-pink);" onclick="resetTimer()">↻</button>
         </div>
-        <input type="text" name="timerMode" autocomplete="off" class="timer-mode" id="timer-mode-text" value="Work (25m)" title="You can edit this!">
       </div>
-      <div class="panel-divider"></div>
-      <div class="fortune-cookie-container">
-        <h2 class="section-title" style="justify-content: center; margin-bottom: 10px;">Fortune 🥠</h2>
-        <div class="cookie-btn" onclick="crackCookie()" title="Crack the cookie!">🥠</div>
-        <div class="cookie-info">Claims: <span id="cookieCount">5</span>/5</div>
+      
+      <div class="panel-divider" style="height: auto; min-height: 100%;"></div>
+      
+      <div class="fortune-cookie-container" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; width: 100%;">
+        <h2 class="section-title" style="justify-content: center; margin: 0 0 10px 0; min-height: 24px;">Fortune 🥠</h2>
+        <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+          <div class="cookie-btn" onclick="crackCookie()" title="Crack the cookie!" style="line-height: 1; margin: 0;">🥠</div>
+        </div>
+        <div class="cookie-info" style="margin: 10px 0 0 0; min-height: 36px; display: flex; align-items: center; justify-content: center;">Claims:&nbsp;<span id="cookieCount">5</span>/5</div>
       </div>
+
     </div>
 
     <!-- WIDGET WEEKLY TO-DO (MINIMALIS V3) 🗓️ -->
@@ -702,6 +701,22 @@
   <button class="btn-secondary-modal" style="margin-bottom: 10px;" onclick="snooze()">5 more mins 😴</button>
   <button class="btn-primary-modal" onclick="stopRinging()">I'M UP I'M UP! 🏃💨</button>
 </div></div>
+
+<!-- PLAYLIST BALIK KE VERSI LAMA YAA BEB 👇 -->
+<script>
+  const playlist = [
+    { title: "One Summer's Day",    artist: "Ghibli Nostalgia 🍃",   src: "https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3" },
+    { title: "Serenity Girl",       artist: "Study Focus 🎧",        src: "https://cdn.pixabay.com/audio/2026/04/08/audio_8ccf6e3f6f.mp3" },
+    { title: "Cozy Moonlight",      artist: "Bedtime Chill 🌙",      src: "https://cdn.pixabay.com/audio/2023/07/30/audio_e0908e8569.mp3" },
+    { title: "Cloud Watching",      artist: "Easy Listening ☁️",     src: "https://cdn.pixabay.com/audio/2026/03/05/audio_a65f7fa52e.mp3" },
+    { title: "Deep Sea Echo",       artist: "Electronic Flow 🌊",    src: "https://cdn.pixabay.com/audio/2026/01/13/audio_1021be955b.mp3" },
+    { title: "Dreamy Sakura",       artist: "Soft Spring 🌸",        src: "https://cdn.pixabay.com/audio/2026/01/13/audio_0903d7c6c1.mp3" },
+    { title: "Library Rain",        artist: "Calm Reading 📖",       src: "https://cdn.pixabay.com/audio/2025/05/15/audio_8a8c21b82d.mp3" },
+    { title: "Stargazing",          artist: "Late Night City 🌌",    src: "https://cdn.pixabay.com/audio/2025/12/05/audio_6ee4e0339d.mp3" },
+    { title: "Vintage Film",        artist: "Analog Warmth 🎞️",      src: "https://cdn.pixabay.com/audio/2026/02/15/audio_808b227045.mp3" },
+    { title: "Morning Haze",        artist: "Golden Hour ✨",        src: "https://cdn.pixabay.com/audio/2026/01/15/audio_632e4a221e.mp3" }
+  ];
+</script>
 
 <script>
   function renderAppleEmoji() {
@@ -912,7 +927,6 @@
     if(audioEl && slider) audioEl.volume = slider.value; 
   }
 
-  // Cek apakah playlist ada sebelum load lagu pertama
   if (typeof playlist !== 'undefined') {
     loadSong(currentSongIndex);
   }
@@ -1008,7 +1022,6 @@
     const w = parseInt(document.getElementById('workTimeInput').value); const b = parseInt(document.getElementById('breakTimeInput').value);
     if (w > 0 && b > 0) {
       workDuration = w; breakDuration = b; pomodoroTime = isWorkMode ? w * 60 : b * 60; updateTimerDisplay();
-      if(document.getElementById('timer-mode-text')) document.getElementById('timer-mode-text').value = isWorkMode ? `Work (${w}m)` : `Chill (${b}m)`;
     }
     closeModals();
   }
@@ -1028,8 +1041,8 @@
         if (pomodoroTime > 0) { pomodoroTime--; updateTimerDisplay(); }
         else {
           clearInterval(timerInterval); isTimerRunning = false; btn.innerText = "▶"; switchFocusMode(false);
-          if (isWorkMode) { showCustomAlert("TIME'S UP 🍅", `Good hustle! Let's take a ${breakDuration} min break ☕`); isWorkMode = false; pomodoroTime = breakDuration * 60; if(document.getElementById('timer-mode-text')) document.getElementById('timer-mode-text').value = `Chill (${breakDuration}m)`; }
-          else { showCustomAlert("BREAK'S OVER 🍅", `Break is over! Time to get back on the grind 🚀`); isWorkMode = true; pomodoroTime = workDuration * 60; if(document.getElementById('timer-mode-text')) document.getElementById('timer-mode-text').value = `Work (${workDuration}m)`; }
+          if (isWorkMode) { showCustomAlert("TIME'S UP 🍅", `Good hustle! Let's take a ${breakDuration} min break ☕`); isWorkMode = false; pomodoroTime = breakDuration * 60; }
+          else { showCustomAlert("BREAK'S OVER 🍅", `Break is over! Time to get back on the grind 🚀`); isWorkMode = true; pomodoroTime = workDuration * 60; }
           updateTimerDisplay();
         }
       }, 1000);
