@@ -365,6 +365,10 @@
   @keyframes popIn { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } } 
   @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 </style>
+
+<!-- SCRIPT BUAT PLAYLIST TERPISAH 👇 -->
+<script src="playlist.js"></script>
+
 </head>
 <body>
 
@@ -405,7 +409,7 @@
                 </div>
                 
                 <div class="id-label">MEMBER ID</div>
-                <div class="id-value" id="randomMemberId">#ID-980000</div>
+                <div class="id-value" id="randomMemberId" style="margin-top: 4px;">#ID-980000</div>
               </div>
               <button class="flip-btn" onclick="flipCard()" title="Flip Card">
                 <svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
@@ -791,19 +795,6 @@
     if(ringMascotWrap) ringMascotWrap.classList.remove('flip');
   }
 
-  const playlist = [
-    { title: "One Summer's Day",    artist: "Ghibli Nostalgia 🍃",   src: "https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3" },
-    { title: "Serenity Girl",       artist: "Study Focus 🎧",        src: "https://cdn.pixabay.com/audio/2026/04/08/audio_8ccf6e3f6f.mp3" },
-    { title: "Cozy Moonlight",      artist: "Bedtime Chill 🌙",      src: "https://cdn.pixabay.com/audio/2023/07/30/audio_e0908e8569.mp3" },
-    { title: "Cloud Watching",      artist: "Easy Listening ☁️",     src: "https://cdn.pixabay.com/audio/2026/03/05/audio_a65f7fa52e.mp3" },
-    { title: "Deep Sea Echo",       artist: "Electronic Flow 🌊",    src: "https://cdn.pixabay.com/audio/2026/01/13/audio_1021be955b.mp3" },
-    { title: "Dreamy Sakura",       artist: "Soft Spring 🌸",        src: "https://cdn.pixabay.com/audio/2026/01/13/audio_0903d7c6c1.mp3" },
-    { title: "Library Rain",        artist: "Calm Reading 📖",       src: "https://cdn.pixabay.com/audio/2025/05/15/audio_8a8c21b82d.mp3" },
-    { title: "Stargazing",          artist: "Late Night City 🌌",    src: "https://cdn.pixabay.com/audio/2025/12/05/audio_6ee4e0339d.mp3" },
-    { title: "Vintage Film",        artist: "Analog Warmth 🎞️",      src: "https://cdn.pixabay.com/audio/2026/02/15/audio_808b227045.mp3" },
-    { title: "Morning Haze",        artist: "Golden Hour ✨",        src: "https://cdn.pixabay.com/audio/2026/01/15/audio_632e4a221e.mp3" }
-  ];
-
   const audioEl     = document.getElementById('bg-audio');
   const playIcon    = document.getElementById('play-icon');
   const pauseIcon   = document.getElementById('pause-icon');
@@ -815,7 +806,7 @@
   if(audioEl) audioEl.volume = 0.5;
 
   function loadSong(index) {
-    if (!playlist[index] || !playlist[index].src || !audioEl) return;
+    if (typeof playlist === 'undefined' || !playlist[index] || !playlist[index].src || !audioEl) return;
     audioEl.src = playlist[index].src;
     const mTitle = document.getElementById('m-title');
     const mArtist = document.getElementById('m-artist');
@@ -843,6 +834,7 @@
   }
 
   function nextSong() {
+    if (typeof playlist === 'undefined') return;
     const mode = MODES[playModeIndex].key;
     if (mode === 'repeat-one') { if(audioEl) audioEl.currentTime = 0; if (isPlaying && audioEl) audioEl.play().catch(e => console.log(e)); return; }
     if (mode === 'shuffle') {
@@ -855,6 +847,7 @@
   }
 
   function prevSong() {
+    if (typeof playlist === 'undefined') return;
     const mode = MODES[playModeIndex].key;
     if (mode === 'shuffle') {
       let r; do { r = Math.floor(Math.random() * playlist.length); } while (r === currentSongIndex && playlist.length > 1);
@@ -868,9 +861,9 @@
   if(audioEl) audioEl.addEventListener('ended', () => nextSong());
 
   function toggleMusic() {
-    if(!audioEl) return;
+    if (typeof playlist === 'undefined' || !audioEl) return;
     if (audioEl.paused) {
-      if (playlist[currentSongIndex].src) audioEl.play().catch(e => console.log(e));
+      if (playlist[currentSongIndex] && playlist[currentSongIndex].src) audioEl.play().catch(e => console.log(e));
       isPlaying = true; 
       if(playIcon) playIcon.style.display = 'none'; 
       if(pauseIcon) pauseIcon.style.display = 'block';
@@ -919,7 +912,10 @@
     if(audioEl && slider) audioEl.volume = slider.value; 
   }
 
-  loadSong(currentSongIndex);
+  // Cek apakah playlist ada sebelum load lagu pertama
+  if (typeof playlist !== 'undefined') {
+    loadSong(currentSongIndex);
+  }
 
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) { if (audioCtxAlarm) audioCtxAlarm.suspend().catch(() => {}); } 
@@ -944,7 +940,7 @@
 
   function renderPlaylistItems() {
     const container = document.getElementById('playlist-items');
-    if(!container) return;
+    if(!container || typeof playlist === 'undefined') return;
     container.innerHTML = playlist.map((song, i) => `
       <div class="playlist-item ${i === currentSongIndex ? 'now-playing' : ''}" onclick="selectSong(event, ${i})">
         <div class="track-num">${String(i + 1).padStart(2, '0')}</div>
