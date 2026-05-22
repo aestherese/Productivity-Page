@@ -1003,12 +1003,36 @@
 
   let workDuration = 25, breakDuration = 5, pomodoroTime = 25 * 60;
   let timerInterval = null, isTimerRunning = false, isWorkMode = true;
+  let timerEndTime = null; // Date.now() timestamp kapan timer selesai
 
   function updateTimerDisplay() {
     const m = String(Math.floor(pomodoroTime / 60)).padStart(2, '0');
     const s = String(pomodoroTime % 60).padStart(2, '0');
     const display = document.getElementById('pomodoro-time');
     if(display) display.innerText = `${m}:${s}`;
+  }
+
+  function timerTick() {
+    if (!isTimerRunning || !timerEndTime) return;
+    // hitung dari timestamp — aman dari safe mode & tab switch!
+    const remaining = Math.max(0, Math.round((timerEndTime - Date.now()) / 1000));
+    pomodoroTime = remaining;
+    updateTimerDisplay();
+    if (remaining <= 0) {
+      clearInterval(timerInterval); timerInterval = null;
+      isTimerRunning = false; timerEndTime = null;
+      const btn = document.getElementById('timer-btn');
+      if(btn) btn.innerText = "▶";
+      switchFocusMode(false);
+      if (isWorkMode) {
+        showCustomAlert("TIME'S UP 🍅", `Good hustle! Let's take a ${breakDuration} min break ☕`);
+        isWorkMode = false; pomodoroTime = breakDuration * 60;
+      } else {
+        showCustomAlert("BREAK'S OVER 🍅", `Break is over! Time to get back on the grind 🚀`);
+        isWorkMode = true; pomodoroTime = workDuration * 60;
+      }
+      updateTimerDisplay();
+    }
   }
 
   function editTimer() {
@@ -1034,22 +1058,32 @@
   function toggleTimer() {
     const btn = document.getElementById('timer-btn');
     if(!btn) return;
-    if (isTimerRunning) { clearInterval(timerInterval); isTimerRunning = false; btn.innerText = "▶"; switchFocusMode(false); }
-    else {
-      isTimerRunning = true; btn.innerText = "⏸"; switchFocusMode(true);
-      timerInterval = setInterval(() => {
-        if (pomodoroTime > 0) { pomodoroTime--; updateTimerDisplay(); }
-        else {
-          clearInterval(timerInterval); isTimerRunning = false; btn.innerText = "▶"; switchFocusMode(false);
-          if (isWorkMode) { showCustomAlert("TIME'S UP 🍅", `Good hustle! Let's take a ${breakDuration} min break ☕`); isWorkMode = false; pomodoroTime = breakDuration * 60; }
-          else { showCustomAlert("BREAK'S OVER 🍅", `Break is over! Time to get back on the grind 🚀`); isWorkMode = true; pomodoroTime = workDuration * 60; }
-          updateTimerDisplay();
-        }
-      }, 1000);
+    if (isTimerRunning) {
+      clearInterval(timerInterval); timerInterval = null;
+      isTimerRunning = false; timerEndTime = null;
+      btn.innerText = "▶"; switchFocusMode(false);
+    } else {
+      isTimerRunning = true;
+      btn.innerText = "⏸"; switchFocusMode(true);
+      timerEndTime = Date.now() + pomodoroTime * 1000;
+      timerInterval = setInterval(timerTick, 500);
     }
   }
 
-  function resetTimer() { clearInterval(timerInterval); isTimerRunning = false; const btn = document.getElementById('timer-btn'); if(btn) btn.innerText = "▶"; switchFocusMode(false); pomodoroTime = isWorkMode ? workDuration * 60 : breakDuration * 60; updateTimerDisplay(); }
+  function resetTimer() {
+    clearInterval(timerInterval); timerInterval = null;
+    isTimerRunning = false; timerEndTime = null;
+    const btn = document.getElementById('timer-btn');
+    if(btn) btn.innerText = "▶";
+    switchFocusMode(false);
+    pomodoroTime = isWorkMode ? workDuration * 60 : breakDuration * 60;
+    updateTimerDisplay();
+  }
+
+  // Page Visibility API — timer recalculate otomatis saat tab balik ke foreground
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && isTimerRunning && timerEndTime) timerTick();
+  });
   updateTimerDisplay();
 
   const fortuneQuotes = ["Good news is sneaking up on you today! ✨","Don't forget to hydrate! You need ammo! ☕💧","All that hard work is gonna pay off real soon! 🌱","Someone is secretly super inspired by what you do! 🎨","Lucky girl era! Get ready for a little surprise today. 🎁","If you're exhausted, take a break. You're doing great! 💖","The universe is cooking up a beautiful plot twist for you. 🌌","A crazy good idea is gonna hit you out of nowhere, write it down! 💡","That choice you doubted? Turns out it's the absolute right move! 🛣️","You're looking stunning today, own it! ✨💅"];
